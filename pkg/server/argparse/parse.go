@@ -19,7 +19,7 @@ func Parse() Args {
 	// Host to listen on.
 	ListenHost := os.Getenv("KV2_LISTEN_HOST")
 	if ListenHost == "" {
-		ListenHost = "localhost"
+		ListenHost = "127.0.0.1"
 	}
 	return Args{
 		ListenPortClient: listenPortClient,

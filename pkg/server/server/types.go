@@ -1,6 +1,9 @@
 package server
 
-import "net"
+import (
+	"net"
+	"sync"
+)
 
 // Server is the main server struct.
 type Server struct {
@@ -9,6 +12,15 @@ type Server struct {
 	listenHost       string
 	listenerServer   net.Listener
 	listenerClient   net.Listener
+	wg               sync.WaitGroup
+	kv               map[string]string
 }
 
 var ServerInstance Server
+
+// Command struct
+type Command struct {
+	Cmd   string
+	Key   string
+	Value string
+}

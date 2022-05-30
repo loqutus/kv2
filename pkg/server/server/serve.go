@@ -8,8 +8,10 @@ import (
 // Serve starts the server.
 func (s *Server) Serve() {
 	s.listenerClient, s.listenerServer = s.Listen()
+	s.wg.Add(2)
 	go s.ServeServer()
 	go s.ServeClient()
+	s.wg.Wait()
 }
 
 // ServeServer starts the server connection handler loop.
@@ -23,6 +25,7 @@ func (s *Server) ServeServer() {
 		}
 		go s.ServerHandler(conn)
 	}
+	s.wg.Done()
 }
 
 // ServeClient starts the client connection handler loop.
@@ -36,4 +39,5 @@ func (s *Server) ServeClient() {
 		}
 		go s.ClientHandler(conn)
 	}
+	s.wg.Done()
 }

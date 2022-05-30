@@ -9,6 +9,5 @@ import (
 func main() {
 	logger.SetLoggerFormat()
 	server.SetupArgs()
-	server.ServerInstance.Listen()
 	server.ServerInstance.Serve()
 }

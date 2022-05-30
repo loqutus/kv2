@@ -12,7 +12,7 @@ import (
 func Loop() {
 	reader := bufio.NewReader(os.Stdin)
 	for {
-		fmt.Println(client.ClientInstance.Host + ":" + client.ClientInstance.Port + "> ")
+		fmt.Print(client.ClientInstance.Host + ":" + client.ClientInstance.Port + "> ")
 		text, _ := reader.ReadString('\n')
 		text = strings.Replace(text, "\n", "", -1)
 		textSplit := strings.Split(text, " ")
