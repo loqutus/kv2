@@ -21,7 +21,7 @@ test_mac_arm64:
 	kill %1
 
 test:
-	./bin/kv2-linux-amd64 &
+	./bin/kv2-linux-arm64 &
 	go test -v ./...
 	kill %1
 
