@@ -1,7 +1,10 @@
 package server
 
-import "errors"
+import (
+	"errors"
+)
 
+// Get is a function that gets a value by key from the server.
 func (s *Server) Get(c Command) (string, error) {
 	if v, ok := s.kv[c.Key]; ok {
 		return v, nil

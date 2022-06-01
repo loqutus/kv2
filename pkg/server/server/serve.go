@@ -3,10 +3,14 @@ package server
 import (
 	"log"
 	"os"
+
+	"github.com/sirupsen/logrus"
 )
 
 // Serve starts the server.
 func (s *Server) Serve() {
+	logrus.Println("starting server")
+	s.kv = make(map[string]string)
 	s.listenerClient, s.listenerServer = s.Listen()
 	s.wg.Add(2)
 	go s.ServeServer()

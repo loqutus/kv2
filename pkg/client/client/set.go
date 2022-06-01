@@ -2,8 +2,9 @@ package client
 
 import "errors"
 
+// Set is a function that sets a key-value pair in the server.
 func (c *Client) Set(key, value string) error {
-	_, err := c.Conn.Write([]byte("SET " + key + " " + value + "\n"))
+	_, err := c.Conn.Write([]byte("SET " + key + " " + value))
 	if err != nil {
 		return err
 	}

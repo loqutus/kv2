@@ -1,0 +1,14 @@
+on: [push, pull_request]
+name: test
+jobs:
+  test:
+    runs-on: self-hosted
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+    - uses: actions/setup-go@v2
+      with:
+        go-version: '^1.17.6'
+    - name: make
+      run: make
+    timeout-minutes: 10
