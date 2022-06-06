@@ -36,6 +36,12 @@ func Loop() {
 				continue
 			}
 			fmt.Println(value)
+		case "info":
+			info, err := client.ClientInstance.Info()
+			if err != nil {
+				fmt.Println(err)
+			}
+			fmt.Println(info)
 		case "exit":
 			return
 		default:

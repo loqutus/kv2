@@ -44,6 +44,16 @@ func (s *Server) ClientHandler(conn net.Conn) {
 				conn.Write([]byte(value))
 				continue
 			}
+		case "info":
+			info, err := s.Info()
+			if err != nil {
+				logrus.Errorln(err)
+				conn.Write([]byte(err.Error()))
+				continue
+			} else {
+				conn.Write([]byte(info))
+				continue
+			}
 		}
 	}
 	return
