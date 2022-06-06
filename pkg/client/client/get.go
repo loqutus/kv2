@@ -1,7 +1,7 @@
 package client
 
 func (c *Client) Get(key string) (string, error) {
-	_, err := c.Conn.Write([]byte("GET " + key))
+	_, err := c.Conn.Write([]byte("get " + key))
 	if err != nil {
 		return "", err
 	}
@@ -10,5 +10,12 @@ func (c *Client) Get(key string) (string, error) {
 	if err != nil {
 		return "", err
 	}
-	return string(respBody), nil
+	var response string
+	for i := 0; i < len(respBody); i++ {
+		if respBody[i] == 0 {
+			break
+		}
+		response += string(respBody[i])
+	}
+	return response, nil
 }

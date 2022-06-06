@@ -16,13 +16,12 @@ func (s *Server) ClientHandler(conn net.Conn) {
 			logrus.Errorln(err)
 			break
 		}
-		logrus.Println(string(respBody))
 		var c Command
 		err = c.parseCmd(respBody)
 		if err != nil {
 			logrus.Errorln(err)
 			conn.Write([]byte(err.Error()))
-			continue
+			break
 		}
 		switch c.Cmd {
 		case "set":
@@ -32,7 +31,6 @@ func (s *Server) ClientHandler(conn net.Conn) {
 				conn.Write([]byte(err.Error()))
 				continue
 			} else {
-				logrus.Println("SET OK")
 				conn.Write([]byte("OK"))
 				continue
 			}
@@ -43,7 +41,6 @@ func (s *Server) ClientHandler(conn net.Conn) {
 				conn.Write([]byte(err.Error()))
 				continue
 			} else {
-				logrus.Println("GET OK")
 				conn.Write([]byte(value))
 				continue
 			}

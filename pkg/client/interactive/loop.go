@@ -13,25 +13,23 @@ func Loop() {
 	reader := bufio.NewReader(os.Stdin)
 	for {
 		fmt.Print(client.ClientInstance.Host + ":" + client.ClientInstance.Port + "> ")
-		text, _ := reader.ReadString('\n')
-		text = strings.Replace(text, "\n", "", -1)
-		textSplit := strings.Split(text, " ")
-		command := textSplit[0]
-		switch strings.ToLower(command) {
+		text, _ := reader.ReadBytes('\n')
+		cmd, key, value := client.Parse(text)
+		switch strings.ToLower(cmd) {
 		case "set":
-			if len(textSplit) < 3 {
+			if key == "" || value == "" {
 				fmt.Println("Usage: set <key> <value>")
 				continue
 			}
-			key := textSplit[1]
-			value := strings.Join(textSplit[2:], " ")
-			client.ClientInstance.Set(key, value)
+			err := client.ClientInstance.Set(key, value)
+			if err != nil {
+				fmt.Println(err)
+			}
 		case "get":
-			if len(textSplit) < 2 {
+			if key == "" {
 				fmt.Println("Usage: get <key>")
 				continue
 			}
-			key := textSplit[1]
 			value, err := client.ClientInstance.Get(key)
 			if err != nil {
 				fmt.Println(err)
@@ -40,6 +38,8 @@ func Loop() {
 			fmt.Println(value)
 		case "exit":
 			return
+		default:
+			fmt.Println("Unknown command")
 		}
 	}
 }

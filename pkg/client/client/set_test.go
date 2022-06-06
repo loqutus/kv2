@@ -1,6 +1,7 @@
 package client
 
 import (
+	"fmt"
 	"testing"
 
 	"github.com/rusik69/kv2/pkg/client/argparse"
@@ -18,6 +19,8 @@ func TestSet(t *testing.T) {
 	if err != nil {
 		t.Error(err)
 	}
+	fmt.Println("value:", value)
+	fmt.Println("value_len:", len(value))
 	if value != "value" {
 		t.Error("Expected value to be 'value', got:", value)
 	}

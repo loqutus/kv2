@@ -27,6 +27,7 @@ func (s *Server) ServeServer() {
 			log.Fatal(err)
 			os.Exit(1)
 		}
+		logrus.Println("server connected")
 		go s.ServerHandler(conn)
 	}
 	s.wg.Done()
@@ -36,11 +37,13 @@ func (s *Server) ServeServer() {
 func (s *Server) ServeClient() {
 	defer s.listenerClient.Close()
 	for {
+		logrus.Println("waiting for client")
 		conn, err := s.listenerClient.Accept()
 		if err != nil {
 			log.Fatal(err)
 			os.Exit(1)
 		}
+		logrus.Println("client connected")
 		go s.ClientHandler(conn)
 	}
 	s.wg.Done()
