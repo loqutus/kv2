@@ -45,7 +45,7 @@ func Loop() {
 		case "exit":
 			return
 		default:
-			fmt.Println("Unknown command")
+			fmt.Println("unknown command")
 		}
 	}
 }

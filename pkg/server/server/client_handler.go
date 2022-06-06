@@ -54,6 +54,9 @@ func (s *Server) ClientHandler(conn net.Conn) {
 				conn.Write([]byte(info))
 				continue
 			}
+		default:
+			logrus.Errorln("unknown command", c.Cmd)
+			conn.Write([]byte("unknown command " + c.Cmd))
 		}
 	}
 	return

@@ -24,6 +24,8 @@ func (c *Command) parseCmd(body []byte) error {
 		}
 		c.Cmd = "get"
 		c.Key = key
+	case "info":
+		c.Cmd = "info"
 	default:
 		return errors.New("unknown command")
 	}
