@@ -23,12 +23,12 @@ build_mac_arm64:
 test_mac_arm64:
 	./bin/kv2-mac-arm64 &
 	go test -v ./...
-	kill $(ps aux | grep kv2 | grep -v grep | awk '{print $2}')
+	kill $(ps aux | grep kv2 | grep -v grep | awk '{print $2}') || true
 
 test:
 	./bin/kv2-linux-arm64 &
 	go test -v ./...
-	kill $(ps aux | grep kv2 | grep -v grep | awk '{print $2}')
+	kill $(ps aux | grep kv2 | grep -v grep | awk '{print $2}') || true
 
 get:
 	go mod tidy
