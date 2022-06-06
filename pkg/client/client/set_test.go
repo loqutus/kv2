@@ -14,7 +14,7 @@ func TestSet(t *testing.T) {
 	if err != nil {
 		t.Error(err)
 	}
-	info, err := ClientInstance.Get("key")
+	value, err := ClientInstance.Get("key")
 	if err != nil {
 		t.Error(err)
 	}
