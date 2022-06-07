@@ -4,12 +4,13 @@ import (
 	"errors"
 
 	"github.com/rusik69/kv2/pkg/client/client"
+	"github.com/sirupsen/logrus"
 )
 
 func (c *Command) parseCmd(body []byte) error {
-	//bodyString = strings.TrimSuffix(bodyString, "\n")
-	//bodyString = strings.TrimPrefix(bodyString, " ")
 	cmd, key, value := client.Parse(body)
+	logrus.Println("cmd:", cmd)
+	logrus.Println("cmd length:", len(cmd))
 	switch cmd {
 	case "set":
 		if key == "" || value == "" {
@@ -27,7 +28,7 @@ func (c *Command) parseCmd(body []byte) error {
 	case "info":
 		c.Cmd = "info"
 	default:
-		return errors.New("unknown command")
+		return errors.New("unknown command: " + cmd)
 	}
 	return nil
 }
