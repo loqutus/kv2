@@ -1,6 +1,7 @@
 package server
 
 import (
+	"io"
 	"net"
 
 	"github.com/sirupsen/logrus"
@@ -12,6 +13,9 @@ func (s *Server) ClientHandler(conn net.Conn) {
 	for {
 		respBody := make([]byte, 1024)
 		_, err := conn.Read(respBody)
+		if err == io.EOF {
+			continue
+		}
 		if err != nil {
 			logrus.Errorln(err)
 			break
