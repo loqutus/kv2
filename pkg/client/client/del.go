@@ -2,7 +2,6 @@ package client
 
 import (
 	"errors"
-	"fmt"
 )
 
 func (c *Client) Del(key string) error {
@@ -18,6 +17,5 @@ func (c *Client) Del(key string) error {
 	if string(respBody) != "OK" {
 		return errors.New("server error : " + err.Error())
 	}
-	fmt.Println("5")
 	return nil
 }

@@ -1,6 +1,7 @@
 package client
 
 import (
+	"fmt"
 	"testing"
 
 	"github.com/rusik69/kv2/pkg/client/argparse"
@@ -37,7 +38,23 @@ func TestClient(t *testing.T) {
 }
 
 func BenchmarkClient(b *testing.B) {
-	for n := 0; n < b.N; n++ {
-		ClientInstance.Set("key", "value")
+	ClientInstance.Connect()
+	for n := 0; n < 1000000; n++ {
+		err := ClientInstance.Set(fmt.Sprint(n), fmt.Sprint(n+1))
+		if err != nil {
+			b.Error(err)
+		}
+	}
+	for n := 0; n < 1000000; n++ {
+		_, err := ClientInstance.Get(fmt.Sprint(n))
+		if err != nil {
+			b.Error(err)
+		}
+	}
+	for n := 0; n < 1000000; n++ {
+		err := ClientInstance.Del(fmt.Sprint(n))
+		if err != nil {
+			b.Error(err)
+		}
 	}
 }

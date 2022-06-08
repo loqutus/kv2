@@ -27,7 +27,8 @@ test_mac_arm64:
 
 test:
 	./bin/kv2-linux-arm64 &
-	go test -v ./...
+	cd pkg/client/client
+	go test -count=1 -v -bench ./
 	kill $(ps aux | grep kv2 | grep -v grep | awk '{print $2}') || true
 
 get:
