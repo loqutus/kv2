@@ -35,3 +35,9 @@ func TestClient(t *testing.T) {
 		}
 	})
 }
+
+func BenchmarkClient(b *testing.B) {
+	for n := 0; n < b.N; n++ {
+		ClientInstance.Set("key", "value")
+	}
+}

@@ -1,5 +1,6 @@
 package client
 
+// Info returns information about the server.
 func (c *Client) Info() (string, error) {
 	_, err := c.Conn.Write([]byte("info"))
 	if err != nil {

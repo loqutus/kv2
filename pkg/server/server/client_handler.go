@@ -41,11 +41,21 @@ func (s *Server) ClientHandler(conn net.Conn) {
 		case "get":
 			value, err := s.Get(c)
 			if err != nil {
-				logrus.Errorln(err)
+				logrus.Println(err)
 				conn.Write([]byte(err.Error()))
 				continue
 			} else {
 				conn.Write([]byte(value))
+				continue
+			}
+		case "del":
+			err = s.Del(c)
+			if err != nil {
+				logrus.Errorln(err)
+				conn.Write([]byte(err.Error()))
+				continue
+			} else {
+				conn.Write([]byte("OK"))
 				continue
 			}
 		case "info":

@@ -4,31 +4,28 @@ import (
 	"errors"
 
 	"github.com/rusik69/kv2/pkg/client/client"
-	"github.com/sirupsen/logrus"
 )
 
+// parseCmd is parsing command to Command object
 func (c *Command) parseCmd(body []byte) error {
-	cmd, key, value := client.Parse(body)
-	logrus.Println("cmd:", cmd)
-	logrus.Println("cmd length:", len(cmd))
-	switch cmd {
+	c.Cmd, c.Key, c.Value = client.Parse(body)
+	switch c.Cmd {
 	case "set":
-		if key == "" || value == "" {
+		if c.Key == "" || c.Value == "" {
 			return errors.New("not enough arguments for set")
 		}
-		c.Cmd = "set"
-		c.Key = key
-		c.Value = value
 	case "get":
-		if key == "" {
+		if c.Key == "" {
 			return errors.New("not enough arguments for get")
 		}
-		c.Cmd = "get"
-		c.Key = key
 	case "info":
-		c.Cmd = "info"
+		return nil
+	case "del":
+		if c.Key == "" {
+			return errors.New("not enough arguments for delete")
+		}
 	default:
-		return errors.New("unknown command: " + cmd)
+		return errors.New("unknown command: " + c.Cmd)
 	}
 	return nil
 }

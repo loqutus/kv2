@@ -24,7 +24,9 @@ func Loop() {
 			err := client.ClientInstance.Set(key, value)
 			if err != nil {
 				fmt.Println(err)
+				continue
 			}
+			fmt.Println("OK")
 		case "get":
 			if key == "" {
 				fmt.Println("Usage: get <key>")
@@ -36,6 +38,17 @@ func Loop() {
 				continue
 			}
 			fmt.Println(value)
+		case "del":
+			if key == "" {
+				fmt.Println("Usage: del <key>")
+				continue
+			}
+			err := client.ClientInstance.Del(key)
+			if err != nil {
+				fmt.Println(err)
+				continue
+			}
+			fmt.Println("OK")
 		case "info":
 			info, err := client.ClientInstance.Info()
 			if err != nil {
