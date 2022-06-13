@@ -6,8 +6,9 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 # PARTICULAR PURPOSE.
 
 # This program built for i386-apple-darwin11.3.0
+ 
 
-# Make data base, printed on Thu Jun  2 11:56:20 2022
+# Make data base, printed on Sat Jun 11 14:17:07 2022
 
 # Variables
 
@@ -44,7 +45,7 @@ __CFBundleIdentifier = com.microsoft.VSCode
 # environment
 INFOPATH = /opt/homebrew/share/info:
 # environment
-VSCODE_IPC_HOOK_EXTHOST = /var/folders/mq/sb26t1d93sg_j5s3xc1m0tbw0000gn/T/vscode-ipc-f7178a12-83c6-4aac-98d6-d148837eb55f.sock
+VSCODE_IPC_HOOK_EXTHOST = /var/folders/mq/sb26t1d93sg_j5s3xc1m0tbw0000gn/T/vscode-ipc-26a21b4d-257f-45fa-bb5e-788087f76913.sock
 # environment
 VSCODE_CWD = /
 # environment
@@ -198,7 +199,7 @@ all:
 # Not a target:
 Makefile:
 #  Implicit rule search has been done.
-#  Last modified 2022-06-01 23:50:10
+#  Last modified 2022-06-09 12:54:49
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -208,10 +209,10 @@ test:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
-#  commands to execute (from `Makefile', line 24):
+#  commands to execute (from `Makefile', line 29):
 	./bin/kv2-linux-arm64 &
-	go test -v ./...
-	kill %1
+	cd pkg/client/client && go test -count=1 -v -bench ./
+	kill $(ps aux | grep kv2 | grep -v grep | awk '{print $2}') || true
 	
 
 build:
@@ -236,9 +237,9 @@ test_mac_arm64:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
-#  commands to execute (from `Makefile', line 19):
+#  commands to execute (from `Makefile', line 24):
 	./bin/kv2-mac-arm64 &
-	go test -v ./...
+	cd pkg/client/client && go test -count=1 -v -bench ./
 	kill %1
 	
 
@@ -246,6 +247,16 @@ default: get build test
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
+
+build_mac_arm64:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+#  commands to execute (from `Makefile', line 19):
+	CGO_ENABLED=0 GOARCH=arm64 GOOS=darwin go build -o bin/${BINARY_NAME}-mac-arm64 cmd/server/main.go
+	CGO_ENABLED=0 GOARCH=arm64 GOOS=darwin go build -o bin/${BINARY_NAME}-client-mac-arm64 cmd/client/main.go
+	chmod +x bin/*
+	
 
 # Not a target:
 .DEFAULT:
@@ -257,13 +268,13 @@ get:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
-#  commands to execute (from `Makefile', line 29):
+#  commands to execute (from `Makefile', line 34):
 	go mod tidy
 	go get ./...
 	
 
 # files hash-table stats:
-# Load=10/1024=1%, Rehash=0, Collisions=0/26=0%
+# Load=11/1024=1%, Rehash=0, Collisions=0/27=0%
 # VPATH Search Paths
 
 # No `vpath' search paths.
@@ -275,6 +286,6 @@ get:
 # strcache size: total = 4096 / max = 4096 / min = 4096 / avg = 4096
 # strcache free: total = 4087 / max = 4087 / min = 4087 / avg = 4087
 
-# Finished Make data base on Thu Jun  2 11:56:20 2022
+# Finished Make data base on Sat Jun 11 14:17:07 2022
 
  

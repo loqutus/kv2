@@ -33,7 +33,7 @@ func TestClient(t *testing.T) {
 		}
 	})
 	t.Run("info", func(t *testing.T) {
-		info, err := ClientInstance.Info()
+		_, err := ClientInstance.Info()
 		if err != nil {
 			t.Error(err)
 		}
