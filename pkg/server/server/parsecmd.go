@@ -11,7 +11,7 @@ func (c *Command) parseCmd(body []byte) error {
 	c.Cmd, c.Key, c.Value = client.Parse(body)
 	switch c.Cmd {
 	case "set":
-		if c.Key == "" || len(c.Value) == 0 {
+		if c.Key == "" || c.Value == nil {
 			return errors.New("not enough arguments for set")
 		}
 	case "get":

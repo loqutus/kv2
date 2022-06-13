@@ -43,7 +43,7 @@ func TestClient(t *testing.T) {
 func BenchmarkClient(b *testing.B) {
 	ClientInstance.Connect()
 	for n := 0; n < 1000000; n++ {
-		err := ClientInstance.Set(fmt.Sprint(n), []byte{byte(n + 1)})
+		err := ClientInstance.Set(fmt.Sprint(n), []byte(fmt.Sprintf("%d", n)))
 		if err != nil {
 			b.Error(err)
 		}
