@@ -12,6 +12,8 @@ func (s *Server) Info() (string, error) {
 	var m runtime.MemStats
 	runtime.ReadMemStats(&m)
 	info += "\nmemory: " + fmt.Sprint(bToMb(m.Alloc)) + " MB"
+	info += "\nnodes: " + fmt.Sprint(len(s.nodes))
+	info += "\nreplicas: " + fmt.Sprint(s.replicas)
 	return info, nil
 }
 

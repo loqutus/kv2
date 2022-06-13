@@ -55,6 +55,36 @@ func Loop() {
 				fmt.Println(err)
 			}
 			fmt.Println(info)
+		case "addnode":
+			if key == "" || len(value) == 0 {
+				fmt.Println("Usage: addnode <host> <port>")
+				continue
+			}
+			err := client.ClientInstance.AddNode(key, string(value))
+			if err != nil {
+				fmt.Println(err)
+			}
+			fmt.Println("OK")
+		case "delnode":
+			if key == "" {
+				fmt.Println("Usage: delnode <host>")
+				continue
+			}
+			err := client.ClientInstance.DelNode(key)
+			if err != nil {
+				fmt.Println(err)
+			}
+			fmt.Println("OK")
+		case "setreplicas":
+			if key == "" {
+				fmt.Println("Usage: setreplicas <replicas>")
+				continue
+			}
+			err := client.ClientInstance.SetReplicas(key)
+			if err != nil {
+				fmt.Println(err)
+			}
+			fmt.Println("OK")
 		case "exit":
 			return
 		default:

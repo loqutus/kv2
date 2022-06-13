@@ -68,6 +68,36 @@ func (s *Server) ClientHandler(conn net.Conn) {
 				conn.Write([]byte(info))
 				continue
 			}
+		case "addnode":
+			err = s.AddNode(c)
+			if err != nil {
+				logrus.Errorln(err)
+				conn.Write([]byte(err.Error()))
+				continue
+			} else {
+				conn.Write([]byte("OK"))
+				continue
+			}
+		case "delnode":
+			err = s.DelNode(c)
+			if err != nil {
+				logrus.Errorln(err)
+				conn.Write([]byte(err.Error()))
+				continue
+			} else {
+				conn.Write([]byte("OK"))
+				continue
+			}
+		case "setreplicas":
+			err = s.SetReplicas(c)
+			if err != nil {
+				logrus.Errorln(err)
+				conn.Write([]byte(err.Error()))
+				continue
+			} else {
+				conn.Write([]byte("OK"))
+				continue
+			}
 		default:
 			logrus.Errorln("unknown command", c.Cmd)
 			conn.Write([]byte("unknown command " + c.Cmd))

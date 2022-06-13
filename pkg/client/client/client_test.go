@@ -32,6 +32,24 @@ func TestClient(t *testing.T) {
 			}
 		}
 	})
+	t.Run("addnode", func(t *testing.T) {
+		err := ClientInstance.AddNode("1.1.1.1", "6969")
+		if err != nil {
+			t.Error(err)
+		}
+	})
+	t.Run("delnode", func(t *testing.T) {
+		err := ClientInstance.DelNode("1.1.1.1")
+		if err != nil {
+			t.Error(err)
+		}
+	})
+	t.Run("setreplicas", func(t *testing.T) {
+		err := ClientInstance.SetReplicas("3")
+		if err != nil {
+			t.Error(err)
+		}
+	})
 	t.Run("info", func(t *testing.T) {
 		_, err := ClientInstance.Info()
 		if err != nil {

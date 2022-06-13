@@ -11,6 +11,9 @@ import (
 func (s *Server) Serve() {
 	logrus.Println("starting server")
 	s.kv = make(map[string][]byte)
+	s.nodes = make(map[string]string)
+	s.replicas = 1
+	s.nodes[s.listenHost] = s.listenPortServer
 	s.listenerClient, s.listenerServer = s.Listen()
 	s.wg.Add(2)
 	go s.ServeServer()

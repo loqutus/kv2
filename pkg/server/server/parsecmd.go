@@ -22,7 +22,19 @@ func (c *Command) parseCmd(body []byte) error {
 		return nil
 	case "del":
 		if c.Key == "" {
-			return errors.New("not enough arguments for delete")
+			return errors.New("not enough arguments for del")
+		}
+	case "addnode":
+		if c.Key == "" {
+			return errors.New("not enough arguments for addnode")
+		}
+	case "delnode":
+		if c.Key == "" {
+			return errors.New("not enough arguments for delnode")
+		}
+	case "setreplicas":
+		if c.Key == "" {
+			return errors.New("not enough aruments for setreplicas")
 		}
 	default:
 		return errors.New("unknown command: " + c.Cmd)
