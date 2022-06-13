@@ -5,8 +5,10 @@ import (
 )
 
 // Set is a function that sets a key-value pair in the server.
-func (c *Client) Set(key, value string) error {
-	_, err := c.Conn.Write([]byte("set " + key + " " + value))
+func (c *Client) Set(key string, value []byte) error {
+	connBody := []byte("set " + key + " ")
+	connBody = append(connBody, value...)
+	_, err := c.Conn.Write(connBody)
 	if err != nil {
 		return err
 	}

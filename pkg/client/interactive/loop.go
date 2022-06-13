@@ -17,7 +17,7 @@ func Loop() {
 		cmd, key, value := client.Parse(text)
 		switch strings.ToLower(cmd) {
 		case "set":
-			if key == "" || value == "" {
+			if key == "" || len(value) == 0 {
 				fmt.Println("Usage: set <key> <value>")
 				continue
 			}
@@ -37,7 +37,7 @@ func Loop() {
 				fmt.Println(err)
 				continue
 			}
-			fmt.Println(value)
+			fmt.Println(string(value))
 		case "del":
 			if key == "" {
 				fmt.Println("Usage: del <key>")

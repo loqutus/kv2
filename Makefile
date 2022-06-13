@@ -21,12 +21,13 @@ build_mac_arm64:
 	chmod +x bin/*
 
 test_mac_arm64:
-	./bin/kv2-mac-arm64 &
 	cd pkg/client/client && go test -count=1 -v -bench ./
-	kill %1
 
 run:
 	./bin/kv2-linux-arm64 &
+
+run_mac_arm64:
+	./bin/kv2-mac-arm64 &
 
 test:
 	cd pkg/client/client && go test -count=1 -v -bench ./

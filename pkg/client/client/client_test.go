@@ -12,7 +12,7 @@ func TestClient(t *testing.T) {
 	ClientInstance.Init(argparse.ArgsInstance)
 	ClientInstance.Connect()
 	t.Run("set", func(t *testing.T) {
-		err := ClientInstance.Set("key", "value")
+		err := ClientInstance.Set("key", []byte("value"))
 		if err != nil {
 			t.Error(err)
 		}
@@ -22,26 +22,28 @@ func TestClient(t *testing.T) {
 		if err != nil {
 			t.Error(err)
 		}
-		if value != "value" {
-			t.Error("Expected value to be 'value', got:", value)
+		expected := "value"
+		if len(value) != len(expected) {
+			t.Error("Expected value to be 'value', got:", string(value))
+		}
+		for i := 0; i < len(value); i++ {
+			if value[i] != expected[i] {
+				t.Error("Expected value to be 'value', got:", string(value))
+			}
 		}
 	})
-	// t.Run("info", func(t *testing.T) {
-	// 	info, err := ClientInstance.Info()
-	// 	if err != nil {
-	// 		t.Error(err)
-	// 	}
-	// 	expected := "keys: 1\nmem: 0 MB"
-	// 	if info != "keys: 1" {
-	// 		t.Error("Expected info to be ", expected, " got:", info)
-	// 	}
-	// })
+	t.Run("info", func(t *testing.T) {
+		info, err := ClientInstance.Info()
+		if err != nil {
+			t.Error(err)
+		}
+	})
 }
 
 func BenchmarkClient(b *testing.B) {
 	ClientInstance.Connect()
 	for n := 0; n < 1000000; n++ {
-		err := ClientInstance.Set(fmt.Sprint(n), fmt.Sprint(n+1))
+		err := ClientInstance.Set(fmt.Sprint(n), []byte{byte(n + 1)})
 		if err != nil {
 			b.Error(err)
 		}

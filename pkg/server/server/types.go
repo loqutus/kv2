@@ -13,7 +13,7 @@ type Server struct {
 	listenerServer   net.Listener
 	listenerClient   net.Listener
 	wg               sync.WaitGroup
-	kv               map[string]string
+	kv               map[string][]byte
 }
 
 var ServerInstance Server
@@ -22,5 +22,5 @@ var ServerInstance Server
 type Command struct {
 	Cmd   string
 	Key   string
-	Value string
+	Value []byte
 }

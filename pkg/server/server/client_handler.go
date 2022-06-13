@@ -45,7 +45,7 @@ func (s *Server) ClientHandler(conn net.Conn) {
 				conn.Write([]byte(err.Error()))
 				continue
 			} else {
-				conn.Write([]byte(value))
+				conn.Write(value)
 				continue
 			}
 		case "del":

@@ -1,7 +1,7 @@
 package client
 
 // Parse parses the command string
-func Parse(input []byte) (cmd, key, value string) {
+func Parse(input []byte) (cmd, key string, value []byte) {
 	var i int
 	for i < len(input)-1 {
 		if input[i] == ' ' || input[i] == 0 {
@@ -23,7 +23,7 @@ func Parse(input []byte) (cmd, key, value string) {
 		if input[i] == '\n' || input[i] == 0 {
 			break
 		}
-		value += string(input[i])
+		value = append(value, input[i])
 		i++
 	}
 	return

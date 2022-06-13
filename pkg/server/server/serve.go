@@ -10,7 +10,7 @@ import (
 // Serve starts the server.
 func (s *Server) Serve() {
 	logrus.Println("starting server")
-	s.kv = make(map[string]string)
+	s.kv = make(map[string][]byte)
 	s.listenerClient, s.listenerServer = s.Listen()
 	s.wg.Add(2)
 	go s.ServeServer()

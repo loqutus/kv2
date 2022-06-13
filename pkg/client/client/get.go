@@ -1,21 +1,21 @@
 package client
 
-func (c *Client) Get(key string) (string, error) {
+func (c *Client) Get(key string) ([]byte, error) {
 	_, err := c.Conn.Write([]byte("get " + key))
 	if err != nil {
-		return "", err
+		return nil, err
 	}
 	respBody := make([]byte, 1024)
 	_, err = c.Conn.Read(respBody)
 	if err != nil {
-		return "", err
+		return nil, err
 	}
-	var response string
+	response := []byte{}
 	for i := 0; i < len(respBody); i++ {
 		if respBody[i] == 0 {
 			break
 		}
-		response += string(respBody[i])
+		response = append(response, respBody[i])
 	}
 	return response, nil
 }
