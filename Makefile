@@ -30,6 +30,7 @@ test_mac_arm64:
 
 run:
 	./bin/kv2-linux-arm64 &
+	KV2_LISTEN_PORT_CLIENT=6971 KV2_LISTEN_PORT_SERVER=6972 ./bin/kv2-mac-arm64 &
 
 run_mac_arm64:
 	./bin/kv2-mac-arm64 &
