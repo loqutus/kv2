@@ -11,20 +11,10 @@ import (
 func (s *Server) ClientHandler(conn net.Conn) {
 	logrus.Println("client handler")
 	for {
-		respBody := make([]byte, 1024)
-		_, err := conn.Read(respBody)
+		c, err := s.GetCmd(conn)
 		if err == io.EOF {
 			continue
-		}
-		if err != nil {
-			logrus.Errorln(err)
-			break
-		}
-		var c Command
-		err = c.parseCmd(respBody)
-		if err != nil {
-			logrus.Errorln(err)
-			conn.Write([]byte(err.Error()))
+		} else if err != nil {
 			break
 		}
 		switch c.Cmd {
@@ -35,13 +25,21 @@ func (s *Server) ClientHandler(conn net.Conn) {
 				conn.Write([]byte(err.Error()))
 				continue
 			} else {
+				if len(s.nodes) > 0 {
+					err = s.SetInNodes(c)
+					if err != nil {
+						logrus.Errorln(err)
+						conn.Write([]byte(err.Error()))
+						continue
+					}
+				}
 				conn.Write([]byte("OK"))
 				continue
 			}
 		case "get":
 			value, err := s.Get(c)
 			if err != nil {
-				logrus.Println(err)
+				logrus.Errorln(err)
 				conn.Write([]byte(err.Error()))
 				continue
 			} else {
@@ -98,10 +96,11 @@ func (s *Server) ClientHandler(conn net.Conn) {
 				conn.Write([]byte("OK"))
 				continue
 			}
+		case "id":
+			conn.Write([]byte(s.id))
 		default:
-			logrus.Errorln("unknown command", c.Cmd)
-			conn.Write([]byte("unknown command " + c.Cmd))
+			logrus.Errorln("unknown command:", c.Cmd)
+			conn.Write([]byte("unknown command: " + c.Cmd))
 		}
 	}
-	return
 }

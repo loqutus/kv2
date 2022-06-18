@@ -3,8 +3,8 @@ package client
 import "errors"
 
 // DelNode is a function that adds a node to the nodes list.
-func (c *Client) DelNode(host string) error {
-	connBody := []byte("delnode " + host)
+func (c *Client) DelNode(host, port string) error {
+	connBody := []byte("delnode " + host + " " + port)
 	_, err := c.Conn.Write(connBody)
 	if err != nil {
 		return err

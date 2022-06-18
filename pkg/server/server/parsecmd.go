@@ -36,6 +36,8 @@ func (c *Command) parseCmd(body []byte) error {
 		if c.Key == "" {
 			return errors.New("not enough aruments for setreplicas")
 		}
+	case "id":
+		break
 	default:
 		return errors.New("unknown command: " + c.Cmd)
 	}

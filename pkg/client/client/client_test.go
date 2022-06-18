@@ -8,17 +8,17 @@ import (
 )
 
 func TestClient(t *testing.T) {
-	argparse.ArgsInstance.Parse()
-	ClientInstance.Init(argparse.ArgsInstance)
-	ClientInstance.Connect()
+	var c1 Client
+	c1.Init(argparse.ArgsInstance)
+	c1.Connect()
 	t.Run("set", func(t *testing.T) {
-		err := ClientInstance.Set("key", []byte("value"))
+		err := c1.Set("key", []byte("value"))
 		if err != nil {
 			t.Error(err)
 		}
 	})
 	t.Run("get", func(t *testing.T) {
-		value, err := ClientInstance.Get("key")
+		value, err := c1.Get("key")
 		if err != nil {
 			t.Error(err)
 		}
@@ -33,25 +33,31 @@ func TestClient(t *testing.T) {
 		}
 	})
 	t.Run("addnode", func(t *testing.T) {
-		err := ClientInstance.AddNode("1.1.1.1", "6969")
+		err := c1.AddNode("127.0.0.1", "6972")
 		if err != nil {
 			t.Error(err)
 		}
 	})
 	t.Run("delnode", func(t *testing.T) {
-		err := ClientInstance.DelNode("1.1.1.1")
+		err := c1.DelNode("127.0.0.1", "6972")
 		if err != nil {
 			t.Error(err)
 		}
 	})
 	t.Run("setreplicas", func(t *testing.T) {
-		err := ClientInstance.SetReplicas("3")
+		err := c1.SetReplicas("2")
 		if err != nil {
 			t.Error(err)
 		}
 	})
 	t.Run("info", func(t *testing.T) {
-		_, err := ClientInstance.Info()
+		_, err := c1.Info()
+		if err != nil {
+			t.Error(err)
+		}
+	})
+	t.Run("getid", func(t *testing.T) {
+		id, err := c1.GetID()
 		if err != nil {
 			t.Error(err)
 		}
@@ -59,21 +65,24 @@ func TestClient(t *testing.T) {
 }
 
 func BenchmarkClient(b *testing.B) {
-	ClientInstance.Connect()
+	argparse.ArgsInstance.Parse()
+	var c Client
+	c.Init(argparse.ArgsInstance)
+	c.Connect()
 	for n := 0; n < 1000000; n++ {
-		err := ClientInstance.Set(fmt.Sprint(n), []byte(fmt.Sprintf("%d", n)))
+		err := c.Set(fmt.Sprint(n), []byte(fmt.Sprintf("%d", n)))
 		if err != nil {
 			b.Error(err)
 		}
 	}
 	for n := 0; n < 1000000; n++ {
-		_, err := ClientInstance.Get(fmt.Sprint(n))
+		_, err := c.Get(fmt.Sprint(n))
 		if err != nil {
 			b.Error(err)
 		}
 	}
 	for n := 0; n < 1000000; n++ {
-		err := ClientInstance.Del(fmt.Sprint(n))
+		err := c.Del(fmt.Sprint(n))
 		if err != nil {
 			b.Error(err)
 		}

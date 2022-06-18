@@ -1,3 +1,4 @@
+SHELL := /bin/bash
 .DEFAULT_GOAL := default
 .PHONY: all
 BINARY_NAME=kv2
@@ -21,17 +22,22 @@ build_mac_arm64:
 	chmod +x bin/*
 
 test_mac_arm64:
-	cd pkg/client/client && go test -count=1 -v -bench ./
+	./bin/kv2-mac-arm64 &
+	sleep 1
+	KV2_LISTEN_PORT_CLIENT=6971 KV2_LISTEN_PORT_SERVER=6972 ./bin/kv2-mac-arm64 &
+	cd pkg/client/client && go test -count=1 -v -bench ./ || true
+	for i in $$(ps aux | grep kv2 | grep -v grep | awk '{print $$2}'); do kill $$i; done
 
 run:
 	./bin/kv2-linux-arm64 &
 
 run_mac_arm64:
 	./bin/kv2-mac-arm64 &
+	KV2_LISTEN_PORT_CLIENT=6971 KV2_LISTEN_PORT_SERVER=6972 ./bin/kv2-mac-arm64 &
 
 test:
 	cd pkg/client/client && go test -count=1 -v -bench ./
-	kill $(ps aux | grep kv2 | grep -v grep | awk '{print $2}') || true
+	kill $$(ps aux | grep kv2 | grep -v grep | awk '{print $$2}') || true
 
 get:
 	go mod tidy

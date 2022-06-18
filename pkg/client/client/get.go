@@ -1,5 +1,6 @@
 package client
 
+// Get is a function that gets a value from the server
 func (c *Client) Get(key string) ([]byte, error) {
 	_, err := c.Conn.Write([]byte("get " + key))
 	if err != nil {
