@@ -96,8 +96,10 @@ func Loop(c client.Client) {
 			} else {
 				fmt.Println(id)
 			}
-		case "exit":
+		case "exit", "quit", "q":
 			return
+		case "":
+			continue
 		default:
 			fmt.Println("unknown command")
 		}

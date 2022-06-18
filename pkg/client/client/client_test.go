@@ -9,6 +9,7 @@ import (
 
 func TestClient(t *testing.T) {
 	var c1 Client
+	argparse.ArgsInstance.Parse()
 	c1.Init(argparse.ArgsInstance)
 	c1.Connect()
 	t.Run("set", func(t *testing.T) {
@@ -65,7 +66,6 @@ func TestClient(t *testing.T) {
 }
 
 func BenchmarkClient(b *testing.B) {
-	argparse.ArgsInstance.Parse()
 	var c Client
 	c.Init(argparse.ArgsInstance)
 	c.Connect()
