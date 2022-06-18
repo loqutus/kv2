@@ -57,7 +57,7 @@ func TestClient(t *testing.T) {
 		}
 	})
 	t.Run("getid", func(t *testing.T) {
-		id, err := c1.GetID()
+		_, err := c1.GetID()
 		if err != nil {
 			t.Error(err)
 		}
