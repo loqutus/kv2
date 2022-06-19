@@ -47,4 +47,7 @@ get:
 gocritic:
 	gocritic check ./...
 
-default: get build run test
+sleep:
+	sleep 1
+
+default: get build run sleep test
