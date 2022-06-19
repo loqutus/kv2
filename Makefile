@@ -44,4 +44,7 @@ get:
 	go mod tidy
 	go get ./...
 
+gocritic:
+	gocritic check ./...
+
 default: get build run test

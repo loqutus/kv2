@@ -1,6 +1,6 @@
 package client
 
-//GetID returns the server id
+// GetID returns the server id
 func (c *Client) GetID() (string, error) {
 	connBody := []byte("id")
 	_, err := c.Conn.Write(connBody)

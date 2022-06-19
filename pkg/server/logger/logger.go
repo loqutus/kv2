@@ -6,6 +6,6 @@ import (
 
 // SetLogger sets the logger format.
 func SetLoggerFormat() {
-	//logrus.SetFormatter(&zt_formatter.ZtFormatter{})
+	// logrus.SetFormatter(&zt_formatter.ZtFormatter{})
 	logrus.SetReportCaller(true)
 }
