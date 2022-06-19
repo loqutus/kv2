@@ -58,6 +58,16 @@ func (s *Server) ServerHandler(conn net.Conn) {
 				conn.Write([]byte("OK"))
 				continue
 			}
+		case "addnode":
+			err = s.AddNode(c, false)
+			if err != nil {
+				logrus.Errorln(err)
+				conn.Write([]byte(err.Error()))
+				continue
+			} else {
+				conn.Write([]byte("OK"))
+				continue
+			}
 		case "id":
 			conn.Write([]byte(s.id))
 		default:

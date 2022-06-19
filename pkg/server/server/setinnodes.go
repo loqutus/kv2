@@ -8,7 +8,7 @@ import (
 func (s *Server) SetInNodes(c Command) error {
 	nodes := s.chooseNodes()
 	for k := range nodes {
-		client := s.nodesClients[k]
+		client := s.nodes[k]
 		err := client.Set(c.Key, c.Value)
 		if err != nil {
 			logrus.Errorln(err)

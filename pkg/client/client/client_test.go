@@ -69,6 +69,10 @@ func BenchmarkClient(b *testing.B) {
 	var c Client
 	c.Init(argparse.ArgsInstance)
 	c.Connect()
+	err := c.AddNode("127.0.0.1", "6972")
+	if err != nil {
+		b.Error(err)
+	}
 	for n := 0; n < 1000000; n++ {
 		err := c.Set(fmt.Sprint(n), []byte(fmt.Sprintf("%d", n)))
 		if err != nil {
@@ -77,12 +81,6 @@ func BenchmarkClient(b *testing.B) {
 	}
 	for n := 0; n < 1000000; n++ {
 		_, err := c.Get(fmt.Sprint(n))
-		if err != nil {
-			b.Error(err)
-		}
-	}
-	for n := 0; n < 1000000; n++ {
-		err := c.Del(fmt.Sprint(n))
 		if err != nil {
 			b.Error(err)
 		}

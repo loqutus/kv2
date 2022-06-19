@@ -5,6 +5,7 @@ import (
 	"os"
 
 	"github.com/google/uuid"
+	"github.com/rusik69/kv2/pkg/client/client"
 	"github.com/sirupsen/logrus"
 )
 
@@ -12,7 +13,7 @@ import (
 func (s *Server) Serve() {
 	logrus.Println("starting server")
 	s.kv = make(map[string][]byte)
-	s.nodes = make(map[string]Node)
+	s.nodes = make(map[string]client.Client)
 	s.id = uuid.New().String()
 	s.replicas = 1
 	s.listenerClient, s.listenerServer = s.Listen()

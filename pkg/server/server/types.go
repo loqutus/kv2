@@ -17,8 +17,7 @@ type Server struct {
 	listenerClient   net.Listener
 	wg               sync.WaitGroup
 	kv               map[string][]byte
-	nodes            map[string]Node
-	nodesClients     map[string]client.Client
+	nodes            map[string]client.Client
 	replicas         int
 }
 
@@ -30,10 +29,4 @@ type Command struct {
 	Cmd   string
 	Key   string
 	Value []byte
-}
-
-// Node struct
-type Node struct {
-	Host string
-	Port string
 }

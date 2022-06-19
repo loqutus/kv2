@@ -67,7 +67,7 @@ func (s *Server) ClientHandler(conn net.Conn) {
 				continue
 			}
 		case "addnode":
-			err = s.AddNode(c)
+			err = s.AddNode(c, true)
 			if err != nil {
 				logrus.Errorln(err)
 				conn.Write([]byte(err.Error()))

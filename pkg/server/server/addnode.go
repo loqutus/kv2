@@ -3,10 +3,9 @@ package server
 import "github.com/rusik69/kv2/pkg/client/client"
 
 // AddNode is a function that adds a node to the nodes list.
-func (s *Server) AddNode(c Command) error {
+func (s *Server) AddNode(c Command, fromClient bool) error {
 	host := c.Key
 	port := string(c.Value)
-	node := Node{Host: host, Port: port}
 	var cli client.Client
 	cli.Host = host
 	cli.Port = port
@@ -15,6 +14,12 @@ func (s *Server) AddNode(c Command) error {
 	if err != nil {
 		return err
 	}
-	s.nodes[id] = node
+	if fromClient {
+		err = cli.AddNode(s.listenHost, s.listenPortServer)
+		if err != nil {
+			return err
+		}
+	}
+	s.nodes[id] = cli
 	return nil
 }

@@ -9,7 +9,6 @@ func (s *Server) DelNode(c Command) error {
 	for id, v := range s.nodes {
 		if v.Host == host && v.Port == port {
 			delete(s.nodes, id)
-			delete(s.nodesClients, id)
 			deleted = true
 			break
 		}
