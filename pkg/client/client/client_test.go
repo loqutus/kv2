@@ -72,7 +72,7 @@ func BenchmarkClient(b *testing.B) {
 	if err != nil {
 		b.Error(err)
 	}
-	err := c.AddNode("127.0.0.1", "6972")
+	err = c.AddNode("127.0.0.1", "6972")
 	if err != nil {
 		b.Error(err)
 	}
