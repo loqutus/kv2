@@ -102,8 +102,8 @@ func BenchmarkClient(b *testing.B) {
 	}
 	fmt.Println(info1)
 	var c2, c3 Client
-	c2.Init(argparse.Args{ServerHost: "127.0.0.1", ServerPort: "6972"})
-	c3.Init(argparse.Args{ServerHost: "127.0.0.1", ServerPort: "6974"})
+	c2.Init(argparse.Args{ServerHost: "127.0.0.1", ServerPort: "6971"})
+	c3.Init(argparse.Args{ServerHost: "127.0.0.1", ServerPort: "6973"})
 	err = c2.Connect()
 	if err != nil {
 		b.Error(err)
