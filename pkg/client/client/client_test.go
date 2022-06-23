@@ -73,6 +73,14 @@ func BenchmarkClient(b *testing.B) {
 	if err != nil {
 		b.Error(err)
 	}
+	err = c.AddNode("127.0.0.1", "6974")
+	if err != nil {
+		b.Error(err)
+	}
+	err = c1.SetReplicas("3")
+	if err != nil {
+		b.Error(err)
+	}
 	for n := 0; n < 1000000; n++ {
 		err := c.Set(fmt.Sprint(n), []byte(fmt.Sprintf("%d", n)))
 		if err != nil {
