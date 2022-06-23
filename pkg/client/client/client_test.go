@@ -68,7 +68,10 @@ func TestClient(t *testing.T) {
 func BenchmarkClient(b *testing.B) {
 	var c Client
 	c.Init(argparse.ArgsInstance)
-	c.Connect()
+	err := c.Connect()
+	if err != nil {
+		b.Error(err)
+	}
 	err := c.AddNode("127.0.0.1", "6972")
 	if err != nil {
 		b.Error(err)
@@ -93,4 +96,30 @@ func BenchmarkClient(b *testing.B) {
 			b.Error(err)
 		}
 	}
+	info1, err := c.Info()
+	if err != nil {
+		b.Error(err)
+	}
+	fmt.Println(info1)
+	var c2, c3 Client
+	c2.Init(argparse.Args{ServerHost: "127.0.0.1", ServerPort: "6972"})
+	c3.Init(argparse.Args{ServerHost: "127.0.0.1", ServerPort: "6974"})
+	err = c2.Connect()
+	if err != nil {
+		b.Error(err)
+	}
+	err = c3.Connect()
+	if err != nil {
+		b.Error(err)
+	}
+	info2, err := c2.Info()
+	if err != nil {
+		b.Error(err)
+	}
+	fmt.Println(info2)
+	info3, err := c3.Info()
+	if err != nil {
+		b.Error(err)
+	}
+	fmt.Println(info3)
 }
