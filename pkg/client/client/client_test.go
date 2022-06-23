@@ -77,7 +77,7 @@ func BenchmarkClient(b *testing.B) {
 	if err != nil {
 		b.Error(err)
 	}
-	err = c1.SetReplicas("3")
+	err = c.SetReplicas("3")
 	if err != nil {
 		b.Error(err)
 	}
