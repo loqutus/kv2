@@ -14,6 +14,8 @@ jobs:
       with:
         username: ${{ secrets.DOCKERHUB_USERNAME }}
         password: ${{ secrets.DOCKERHUB_TOKEN }}
-    - name: make docker
-      run: make docker
+    - name: make docker_arm64
+      run: make docker_arm64
+    - name: make docker_amd64
+      run: make docker_amd64
     timeout-minutes: 10
