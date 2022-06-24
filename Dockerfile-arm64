@@ -6,6 +6,6 @@ RUN make build
 
 FROM arm64v8/alpine:latest
 WORKDIR /
-COPY --from=build /go/src/github.com/loqutus/kv2/bin/kv2-linux-arm64 /usr/bin/kv2
+COPY --from=build /go/src/github.com/rusik69/kv2/bin/kv2-linux-arm64 /usr/bin/kv2
 ENTRYPOINT ["/usr/bin/kv2"]
 EXPOSE 6969 6970
