@@ -7,10 +7,10 @@ metadata:
   name: kv2
 spec:
   replicas: 3
+  serviceName: kv2
   selector:
     matchLabels:
       app: kv2
-  strategy: {}
   template:
     metadata:
       creationTimestamp: null
@@ -21,4 +21,3 @@ spec:
       - image: loqutus/kv2:latest-arm64
         name: kv2
         resources: {}
-status: {}
