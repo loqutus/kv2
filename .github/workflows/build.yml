@@ -18,4 +18,6 @@ jobs:
       run: make docker_amd64
     - name: make docker_arm64
       run: make docker_arm64
+    - name: make install
+      run: make install
     timeout-minutes: 10

@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: kv2
+  labels:
+    app: kv2
+spec:
+  ports:
+  - port: 6969
+    name: client
+  - port: 6970
+    name: server
+  clusterIP: None
+  selector:
+    app: kv2

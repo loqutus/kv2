@@ -58,4 +58,10 @@ docker_amd64:
 	docker build . -f Dockerfile-amd64 -t loqutus/kv2:latest-amd64
 	docker push loqutus/kv2:latest-amd64
 
+install:
+	kubectl apply -f deployments/*
+
+uninstall:
+	kubectl delete -f deployments/*
+
 default: get build run sleep test
