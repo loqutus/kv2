@@ -50,4 +50,12 @@ gocritic:
 sleep:
 	sleep 1
 
+docker_arm64:
+	docker build . -f Dockerfile-arm64 -t loqutus/kv2-arm64
+	docker push loqutus/kv2-arm64
+
+docker_amd64:
+	docker build . -f Dockerfile -t loqutus/kv2-amd64
+	docker push loqutus/kv2-amd64
+
 default: get build run sleep test
