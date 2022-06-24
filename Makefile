@@ -59,7 +59,7 @@ docker_amd64:
 	docker push loqutus/kv2:latest-amd64
 
 install:
-	kubectl apply -f deployments/*
+	kubectl apply -f deployments/
 
 uninstall:
 	kubectl delete -f deployments/*
