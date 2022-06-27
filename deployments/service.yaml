@@ -28,5 +28,5 @@ spec:
       port: 6969
       targetPort: 6969
     - port: 6970
+      targetPort: 6970
       protocol: TCP
-      name: server
