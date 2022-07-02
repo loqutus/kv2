@@ -64,7 +64,7 @@ install:
 	kubectl apply -f deployments/
 
 uninstall:
-	kubectl delete -f deployments/*
+	kubectl delete -f deployments/ || true
 
 logs:
 	kubectl logs job.batch/kv2-test
