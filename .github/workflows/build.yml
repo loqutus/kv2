@@ -20,4 +20,6 @@ jobs:
       run: make docker_arm64
     - name: make install
       run: make install
+    - name: make logs
+      run: make logs
     timeout-minutes: 10
