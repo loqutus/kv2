@@ -9,4 +9,6 @@ spec:
       - name: kv2-test
         image: loqutus/kv2-test:latest
       restartPolicy: Never
+      nodeSelector:
+        beta.kubernetes.io/arch: arm64
   backoffLimit: 0

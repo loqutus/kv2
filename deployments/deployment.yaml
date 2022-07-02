@@ -20,6 +20,5 @@ spec:
       containers:
       - image: loqutus/kv2:latest-arm64
         name: kv2
-        resources: {}
       nodeSelector:
         beta.kubernetes.io/arch: arm64
