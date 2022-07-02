@@ -1,0 +1,12 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: kv2-test
+spec:
+  template:
+    spec:
+      containers:
+      - name: kv2-test
+        image: loqutus/kv2-test:latest
+      restartPolicy: Never
+  backoffLimit: 0
