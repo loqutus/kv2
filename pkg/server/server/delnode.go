@@ -2,6 +2,7 @@ package server
 
 import "errors"
 
+// DelNode is a function that deletes a node from the server.
 func (s *Server) DelNode(c Command) error {
 	host := c.Key
 	port := string(c.Value)

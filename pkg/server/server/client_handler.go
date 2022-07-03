@@ -98,6 +98,8 @@ func (s *Server) ClientHandler(conn net.Conn) {
 			}
 		case "id":
 			conn.Write([]byte(s.id))
+		case "ping":
+			conn.Write([]byte("OK"))
 		default:
 			logrus.Errorln("unknown command:", c.Cmd)
 			conn.Write([]byte("unknown command: " + c.Cmd))

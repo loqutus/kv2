@@ -19,7 +19,7 @@ func (c *Command) parseCmd(body []byte) error {
 			return errors.New("not enough arguments for get")
 		}
 	case "info":
-		return nil
+		break
 	case "del":
 		if c.Key == "" {
 			return errors.New("not enough arguments for del")
@@ -36,6 +36,8 @@ func (c *Command) parseCmd(body []byte) error {
 		if c.Key == "" {
 			return errors.New("not enough aruments for setreplicas")
 		}
+	case "ping":
+		break
 	case "id":
 		break
 	default:

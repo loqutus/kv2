@@ -11,5 +11,6 @@ func main() {
 	logger.SetLoggerFormat()
 	args := argparse.Parse()
 	server.ServerInstance.SetupArgs(args)
+	go server.ServerInstance.MemController()
 	server.ServerInstance.Serve()
 }

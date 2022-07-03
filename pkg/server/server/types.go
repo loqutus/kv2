@@ -19,6 +19,8 @@ type Server struct {
 	kv               map[string][]byte
 	nodes            map[string]client.Client
 	replicas         int
+	memLimit         uint64
+	memUsage         uint64
 }
 
 // ServerInstance is the main server instance.
