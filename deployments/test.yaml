@@ -8,6 +8,7 @@ spec:
       containers:
       - name: kv2-test
         image: loqutus/kv2-test:latest
+        imagePullPolicy: Always
       restartPolicy: Never
       nodeSelector:
         beta.kubernetes.io/arch: arm64
