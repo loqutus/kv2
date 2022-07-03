@@ -32,4 +32,4 @@ spec:
         - name: KV2_LISTEN_HOST
           value: "0.0.0.0"
       nodeSelector:
-        beta.kubernetes.io/arch: arm64
+        kubernetes.io/arch: arm64
