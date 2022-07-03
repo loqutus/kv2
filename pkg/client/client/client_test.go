@@ -9,9 +9,13 @@ import (
 
 func TestClient(t *testing.T) {
 	var c1 Client
-	argparse.ArgsInstance.Parse()
+	argparse.ArgsInstance.ServerHost = "kv2-0"
+	argparse.ArgsInstance.ServerPort = "6969"
 	c1.Init(argparse.ArgsInstance)
-	c1.Connect()
+	err := c1.Connect()
+	if err != nil {
+		t.Error(err)
+	}
 	t.Run("set", func(t *testing.T) {
 		err := c1.Set("key", []byte("value"))
 		if err != nil {
@@ -34,13 +38,13 @@ func TestClient(t *testing.T) {
 		}
 	})
 	t.Run("addnode", func(t *testing.T) {
-		err := c1.AddNode("127.0.0.1", "6972")
+		err := c1.AddNode("kv2-1", "6969")
 		if err != nil {
 			t.Error(err)
 		}
 	})
 	t.Run("delnode", func(t *testing.T) {
-		err := c1.DelNode("127.0.0.1", "6972")
+		err := c1.DelNode("kv2-1", "6969")
 		if err != nil {
 			t.Error(err)
 		}
@@ -72,11 +76,11 @@ func BenchmarkClient(b *testing.B) {
 	if err != nil {
 		b.Error(err)
 	}
-	err = c.AddNode("127.0.0.1", "6972")
+	err = c.AddNode("kv2-1", "6969")
 	if err != nil {
 		b.Error(err)
 	}
-	err = c.AddNode("127.0.0.1", "6974")
+	err = c.AddNode("kv2-2", "6969")
 	if err != nil {
 		b.Error(err)
 	}
