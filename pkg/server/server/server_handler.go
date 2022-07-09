@@ -22,7 +22,7 @@ func (s *Server) ServerHandler(conn net.Conn) {
 			continue
 		}
 		if errors.Is(err, os.ErrDeadlineExceeded) {
-			logrus.Errorln("timeout")
+			logrus.Errorln("client timeout")
 			break
 		}
 		if err != nil {
