@@ -10,6 +10,7 @@ import (
 // ServerHandler is the main server handler.
 func (s *Server) ClientHandler(conn net.Conn) {
 	logrus.Println("client handler")
+	defer conn.Close()
 	for {
 		c, err := s.GetCmd(conn)
 		if err == io.EOF {
