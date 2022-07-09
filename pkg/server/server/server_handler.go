@@ -1,8 +1,11 @@
 package server
 
 import (
+	"errors"
 	"io"
 	"net"
+	"os"
+	"time"
 
 	"github.com/sirupsen/logrus"
 )
@@ -12,10 +15,15 @@ func (s *Server) ServerHandler(conn net.Conn) {
 	logrus.Println("server handler")
 	defer conn.Close()
 	for {
+		conn.SetDeadline(time.Now().Add(time.Second * 60))
 		respBody := make([]byte, 1024)
 		_, err := conn.Read(respBody)
 		if err == io.EOF {
 			continue
+		}
+		if errors.Is(err, os.ErrDeadlineExceeded) {
+			logrus.Errorln("timeout")
+			break
 		}
 		if err != nil {
 			logrus.Errorln(err)
@@ -76,5 +84,4 @@ func (s *Server) ServerHandler(conn net.Conn) {
 			logrus.Errorln("unknown command", c.Cmd, len(c.Cmd))
 		}
 	}
-	return
 }

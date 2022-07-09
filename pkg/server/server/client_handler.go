@@ -23,7 +23,7 @@ func (s *Server) ClientHandler(conn net.Conn) {
 			err = s.Set(c)
 			if err != nil {
 				logrus.Errorln(err)
-				conn.Write([]byte(err.Error()))
+				conn.Write([]byte(err.Error())) 
 				continue
 			} else {
 				if len(s.nodes) > 0 {
