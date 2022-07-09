@@ -10,6 +10,7 @@ import (
 // ServerHandler is the main server handler.
 func (s *Server) ServerHandler(conn net.Conn) {
 	logrus.Println("server handler")
+	defer conn.Close()
 	for {
 		respBody := make([]byte, 1024)
 		_, err := conn.Read(respBody)
