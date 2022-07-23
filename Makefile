@@ -52,13 +52,15 @@ sleep:
 
 docker_arm64:
 	docker build . -f Dockerfile-arm64 -t loqutus/kv2:latest-arm64
-	docker build . -f Dockerfile-test -t loqutus/kv2-test:latest
+	docker build . -f Dockerfile-test -t loqutus/kv2-test:latest-arm64
 	docker push loqutus/kv2:latest-arm64
-	docker push loqutus/kv2-test:latest
+	docker push loqutus/kv2-test:latest-arm64
 
 docker_amd64:
 	docker build . -f Dockerfile-amd64 -t loqutus/kv2:latest-amd64
+	docker build . -f Dockerfile-test -t loqutus/kv2-test:latest
 	docker push loqutus/kv2:latest-amd64
+	docker push loqutus/kv2-test:latest
 
 install:
 	kubectl apply -f deployments/
