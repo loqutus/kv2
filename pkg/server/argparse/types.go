@@ -1,8 +1,11 @@
 package argparse
 
 type Args struct {
-	ListenPortClient string
-	ListenPortServer string
-	ListenHost       string
-	MemLimit         int
+	ListenPortClient     string
+	ListenPortServer     string
+	ListenPortFileServer string
+	ListenHost           string
+	MemLimit             uint64
+	Replicas             int
+	NodeNames               [][]string
 }

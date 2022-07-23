@@ -96,6 +96,13 @@ func Loop(c client.Client) {
 			} else {
 				fmt.Println(id)
 			}
+		case "ping":
+			err := c.Ping()
+			if err != nil {
+				fmt.Println(err)
+			} else {
+				fmt.Println("pong")
+			}
 		case "exit", "quit", "q":
 			return
 		case "":

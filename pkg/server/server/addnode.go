@@ -9,7 +9,10 @@ func (s *Server) AddNode(c Command, fromClient bool) error {
 	var cli client.Client
 	cli.Host = host
 	cli.Port = port
-	cli.Connect()
+	err := cli.Connect()
+	if err != nil {
+		return err
+	}
 	id, err := cli.GetID()
 	if err != nil {
 		return err

@@ -23,7 +23,7 @@ func (s *Server) ClientHandler(conn net.Conn) {
 			err = s.Set(c)
 			if err != nil {
 				logrus.Errorln(err)
-				conn.Write([]byte(err.Error())) 
+				conn.Write([]byte(err.Error()))
 				continue
 			} else {
 				if len(s.nodes) > 0 {
@@ -100,7 +100,7 @@ func (s *Server) ClientHandler(conn net.Conn) {
 		case "id":
 			conn.Write([]byte(s.id))
 		case "ping":
-			conn.Write([]byte("OK"))
+			conn.Write([]byte("pong"))
 		default:
 			logrus.Errorln("unknown command:", c.Cmd)
 			conn.Write([]byte("unknown command: " + c.Cmd))

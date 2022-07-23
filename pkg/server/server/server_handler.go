@@ -79,6 +79,8 @@ func (s *Server) ServerHandler(conn net.Conn) {
 			}
 		case "id":
 			conn.Write([]byte(s.id))
+		case "ping":
+			conn.Write([]byte("pong"))
 		default:
 			conn.Write([]byte("unknown command " + c.Cmd))
 			logrus.Errorln("unknown command", c.Cmd, len(c.Cmd))

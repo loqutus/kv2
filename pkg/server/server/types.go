@@ -18,6 +18,7 @@ type Server struct {
 	wg               sync.WaitGroup
 	kv               map[string][]byte
 	nodes            map[string]client.Client
+	nodeNames        [][]string
 	replicas         int
 	memLimit         uint64
 	memUsage         uint64

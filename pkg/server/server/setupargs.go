@@ -7,4 +7,7 @@ func (s *Server) SetupArgs(args argparse.Args) {
 	s.listenPortClient = args.ListenPortClient
 	s.listenPortServer = args.ListenPortServer
 	s.listenHost = args.ListenHost
+	s.replicas = args.Replicas
+	s.memLimit = args.MemLimit
+	s.nodeNames = args.NodeNames
 }

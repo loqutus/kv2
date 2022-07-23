@@ -12,5 +12,6 @@ func main() {
 	args := argparse.Parse()
 	server.ServerInstance.SetupArgs(args)
 	go server.ServerInstance.MemController()
+	go server.ServerInstance.ConnController()
 	server.ServerInstance.Serve()
 }

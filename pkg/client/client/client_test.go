@@ -9,7 +9,7 @@ import (
 
 func TestClient(t *testing.T) {
 	var c1 Client
-	argparse.ArgsInstance.ServerHost = "kv2-0"
+	argparse.ArgsInstance.ServerHost = "localhost"
 	argparse.ArgsInstance.ServerPort = "6969"
 	c1.Init(argparse.ArgsInstance)
 	err := c1.Connect()
@@ -37,24 +37,24 @@ func TestClient(t *testing.T) {
 			}
 		}
 	})
-	t.Run("addnode", func(t *testing.T) {
-		err := c1.AddNode("kv2-1", "6969")
-		if err != nil {
-			t.Error(err)
-		}
-	})
-	t.Run("delnode", func(t *testing.T) {
-		err := c1.DelNode("kv2-1", "6969")
-		if err != nil {
-			t.Error(err)
-		}
-	})
-	t.Run("setreplicas", func(t *testing.T) {
-		err := c1.SetReplicas("2")
-		if err != nil {
-			t.Error(err)
-		}
-	})
+	// t.Run("addnode", func(t *testing.T) {
+	// 	err := c1.AddNode("localhost", "6969")
+	// 	if err != nil {
+	// 		t.Error(err)
+	// 	}
+	// })
+	// t.Run("delnode", func(t *testing.T) {
+	// 	err := c1.DelNode("localhost", "6969")
+	// 	if err != nil {
+	// 		t.Error(err)
+	// 	}
+	// })
+	// t.Run("setreplicas", func(t *testing.T) {
+	// 	err := c1.SetReplicas("2")
+	// 	if err != nil {
+	// 		t.Error(err)
+	// 	}
+	// })
 	t.Run("info", func(t *testing.T) {
 		_, err := c1.Info()
 		if err != nil {
@@ -76,18 +76,18 @@ func BenchmarkClient(b *testing.B) {
 	if err != nil {
 		b.Error(err)
 	}
-	err = c.AddNode("kv2-1", "6969")
-	if err != nil {
-		b.Error(err)
-	}
-	err = c.AddNode("kv2-2", "6969")
-	if err != nil {
-		b.Error(err)
-	}
-	err = c.SetReplicas("3")
-	if err != nil {
-		b.Error(err)
-	}
+	// err = c.AddNode("kv2-1", "6969")
+	// if err != nil {
+	// 	b.Error(err)
+	// }
+	// err = c.AddNode("kv2-2", "6969")
+	// if err != nil {
+	// 	b.Error(err)
+	// }
+	// err = c.SetReplicas("3")
+	// if err != nil {
+	// 	b.Error(err)
+	// }
 	for n := 0; n < 1000000; n++ {
 		err := c.Set(fmt.Sprint(n), []byte(fmt.Sprintf("%d", n)))
 		if err != nil {
@@ -105,25 +105,25 @@ func BenchmarkClient(b *testing.B) {
 		b.Error(err)
 	}
 	fmt.Println(info1)
-	var c2, c3 Client
-	c2.Init(argparse.Args{ServerHost: "127.0.0.1", ServerPort: "6971"})
-	c3.Init(argparse.Args{ServerHost: "127.0.0.1", ServerPort: "6973"})
-	err = c2.Connect()
-	if err != nil {
-		b.Error(err)
-	}
-	err = c3.Connect()
-	if err != nil {
-		b.Error(err)
-	}
-	info2, err := c2.Info()
-	if err != nil {
-		b.Error(err)
-	}
-	fmt.Println(info2)
-	info3, err := c3.Info()
-	if err != nil {
-		b.Error(err)
-	}
-	fmt.Println(info3)
+	// var c2, c3 Client
+	// c2.Init(argparse.Args{ServerHost: "127.0.0.1", ServerPort: "6971"})
+	// c3.Init(argparse.Args{ServerHost: "127.0.0.1", ServerPort: "6973"})
+	// err = c2.Connect()
+	// if err != nil {
+	// 	b.Error(err)
+	// }
+	// err = c3.Connect()
+	// if err != nil {
+	// 	b.Error(err)
+	// }
+	// info2, err := c2.Info()
+	// if err != nil {
+	// 	b.Error(err)
+	// }
+	// fmt.Println(info2)
+	// info3, err := c3.Info()
+	// if err != nil {
+	// 	b.Error(err)
+	// }
+	// fmt.Println(info3)
 }

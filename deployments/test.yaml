@@ -11,5 +11,5 @@ spec:
         imagePullPolicy: Always
       restartPolicy: Never
       nodeSelector:
-        kubernetes.io/arch: arm64
+        kubernetes.io/arch: amd64
   backoffLimit: 0
