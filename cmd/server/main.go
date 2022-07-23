@@ -4,7 +4,6 @@ import (
 	"github.com/rusik69/kv2/pkg/server/argparse"
 	"github.com/rusik69/kv2/pkg/server/logger"
 	"github.com/rusik69/kv2/pkg/server/server"
-	pyroscope "github.com/pyroscope-io/pyroscope/pkg/agent/profiler"
 )
 
 // main server cmd function.
