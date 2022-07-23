@@ -7,5 +7,6 @@ type Args struct {
 	ListenHost           string
 	MemLimit             uint64
 	Replicas             int
-	NodeNames               [][]string
+	NodeNames            [][]string
+	Debug                bool
 }

@@ -37,6 +37,12 @@ func Parse() Args {
 	if replicas == 0 || err != nil {
 		replicas = 1
 	}
+	// debug mode.
+	debugStr := os.Getenv("KV2_DEBUG")
+	debug := false
+	if debugStr == "true" {
+		debug = true
+	}
 	// nodes list
 	var nodes [][]string
 	nodesString := os.Getenv("KV2_NODES")
@@ -49,5 +55,6 @@ func Parse() Args {
 		MemLimit:             uint64(memLimit),
 		Replicas:             replicas,
 		NodeNames:            nodes,
+		Debug:                debug,
 	}
 }

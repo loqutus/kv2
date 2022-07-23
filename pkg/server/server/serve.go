@@ -11,6 +11,9 @@ import (
 // Serve starts the server.
 func (s *Server) Serve() {
 	logrus.Println("starting server")
+	if s.debug {
+		startPyroscope()
+	}
 	s.kv = make(map[string][]byte)
 	s.nodes = make(map[string]client.Client)
 	s.id = uuid.New().String()

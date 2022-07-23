@@ -10,4 +10,5 @@ func (s *Server) SetupArgs(args argparse.Args) {
 	s.replicas = args.Replicas
 	s.memLimit = args.MemLimit
 	s.nodeNames = args.NodeNames
+	s.debug = args.Debug
 }

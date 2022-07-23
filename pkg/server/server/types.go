@@ -22,6 +22,7 @@ type Server struct {
 	replicas         int
 	memLimit         uint64
 	memUsage         uint64
+	debug            bool
 }
 
 // ServerInstance is the main server instance.
