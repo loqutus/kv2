@@ -33,6 +33,8 @@ spec:
               value: "0.0.0.0"
             - name: KV2_PYROSCOPE_SERVER
               value: "http://pyroscope:4040"
+            - name: KV2_DEBUG
+              value: "true"
           securityContext:
             capabilities:
               add:
