@@ -14,7 +14,7 @@ func (s *Server) ClientHandler(conn net.Conn) {
 	for {
 		c, err := s.GetCmd(conn)
 		if err == io.EOF {
-			continue
+			break
 		} else if err != nil {
 			break
 		}
