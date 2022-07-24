@@ -9,6 +9,7 @@ require (
 )
 
 require (
+	github.com/pyroscope-io/client v0.3.0 // indirect
 	github.com/stretchr/testify v1.5.1 // indirect
 	golang.org/x/sys v0.0.0-20220615213510-4f61da869c0c // indirect
 	gopkg.in/yaml.v2 v2.4.0 // indirect
