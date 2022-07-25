@@ -23,11 +23,11 @@ spec:
           imagePullPolicy: Always
           resources:
             requests:
-              memory: "512Mi"
+              memory: "1024Mi"
               cpu: "100m"
             limits:
-              memory: "4096Mi"
-              cpu: "4000m"
+              memory: "8192Mi"
+              cpu: "4096m"
           env:
             - name: KV2_LISTEN_HOST
               value: "0.0.0.0"
