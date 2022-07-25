@@ -7,9 +7,9 @@ spec:
     spec:
       containers:
       - name: kv2-test
-        image: loqutus/kv2-test:latest
+        image: loqutus/kv2-test:latest-amd64
         imagePullPolicy: Always
       restartPolicy: Never
       nodeSelector:
-        kubernetes.io/arch: amd64
+        kubernetes.io/arch: arm64
   backoffLimit: 0
