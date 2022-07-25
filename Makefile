@@ -38,7 +38,7 @@ run_mac_arm64:
 	KV2_LISTEN_PORT_CLIENT=6971 KV2_LISTEN_PORT_SERVER=6972 ./bin/kv2-mac-arm64 &
 
 test:
-	cd pkg/client/client && go test -count=1 -v -bench ./ && go test -count=1 -v -cpuprofile cpu.profile -memprofile mem.profile
+	cd pkg/client/client && go test -count=1 -v -bench ./
 
 get:
 	go mod tidy
