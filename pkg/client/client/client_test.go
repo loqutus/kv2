@@ -9,7 +9,7 @@ import (
 
 func TestClient(t *testing.T) {
 	var c1 Client
-	argparse.ArgsInstance.ServerHost = "localhost"
+	argparse.ArgsInstance.ServerHost = "kv2"
 	argparse.ArgsInstance.ServerPort = "6969"
 	c1.Init(argparse.ArgsInstance)
 	err := c1.Connect()
