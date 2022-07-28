@@ -56,10 +56,11 @@ func TestClient(t *testing.T) {
 	// 	}
 	// })
 	t.Run("info", func(t *testing.T) {
-		_, err := c1.Info()
+		infoString, err := c1.Info()
 		if err != nil {
 			t.Error(err)
 		}
+		fmt.Println(infoString)
 	})
 	t.Run("getid", func(t *testing.T) {
 		_, err := c1.GetID()
