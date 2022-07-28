@@ -17,15 +17,15 @@ func Parse() Args {
 	if listenPortServer == "" {
 		listenPortServer = "6970"
 	}
+	// port to listen for fileserver client connections.
+	listenPortFileServer := os.Getenv("KV2_FILESERVER_LISTEN_PORT")
+	if listenPortFileServer == "" {
+		listenPortFileServer = "6971"
+	}
 	// Host to listen on.
 	ListenHost := os.Getenv("KV2_LISTEN_HOST")
 	if ListenHost == "" {
 		ListenHost = "127.0.0.1"
-	}
-	// Port to listen for fileserver connections.
-	listenPortFileserver := os.Getenv("KV2_LISTEN_PORT_FILESERVER")
-	if listenPortFileserver == "" {
-		listenPortFileserver = "6971"
 	}
 	// Memory limit.
 	memLimit, err := strconv.Atoi(os.Getenv("KV2_MEM_LIMIT"))
@@ -43,6 +43,11 @@ func Parse() Args {
 	if debugStr == "true" {
 		debug = true
 	}
+	// fileserver directory.
+	fileServerDir := os.Getenv("KV2_FILESERVER_DIR")
+	if fileServerDir == "" {
+		fileServerDir = "/tmp/kv2/fileserver"
+	}
 	// nodes list
 	var nodes [][]string
 	nodesString := os.Getenv("KV2_NODES")
@@ -50,11 +55,12 @@ func Parse() Args {
 	return Args{
 		ListenPortClient:     listenPortClient,
 		ListenPortServer:     listenPortServer,
-		ListenPortFileServer: listenPortFileserver,
+		ListenPortFileServer: listenPortFileServer,
 		ListenHost:           ListenHost,
 		MemLimit:             uint64(memLimit),
 		Replicas:             replicas,
 		NodeNames:            nodes,
 		Debug:                debug,
+		FileServerDir:        fileServerDir,
 	}
 }

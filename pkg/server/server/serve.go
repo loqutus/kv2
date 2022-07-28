@@ -4,18 +4,16 @@ import (
 	"log"
 
 	"github.com/google/uuid"
-	"github.com/rusik69/kv2/pkg/client/client"
 	"github.com/sirupsen/logrus"
 )
 
 // Serve starts the server.
 func (s *Server) Serve() {
-	logrus.Println("starting server")
+	logrus.Info("starting server")
 	if s.debug {
 		startPyroscope()
 	}
 	s.kv = make(map[string][]byte)
-	s.nodes = make(map[string]client.Client)
 	s.id = uuid.New().String()
 	s.replicas = 1
 	s.listenerClient, s.listenerServer = s.Listen()

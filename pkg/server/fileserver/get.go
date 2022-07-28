@@ -1,20 +1,21 @@
 package fileserver
 
 import (
-	"errors"
 	"net/http"
 
 	"github.com/sirupsen/logrus"
 )
 
 // GetFileHandler is a function that handles GET requests.
-func (s *FileServer) GetFileHandler(w http.ResponseWriter, r *http.Request) error {
+func (s *FileServer) GetFileHandler(w http.ResponseWriter, r *http.Request) {
+	defer r.Body.Close()
 	if len(r.URL.Path) < 2 {
-		return errors.New("file name is not specified")
+		logrus.Info("GetFileHandler: file name is not specified")
+		w.Write([]byte("file name is not specified"))
+		r.Response.StatusCode = http.StatusBadRequest
+		return
 	}
 	fileName := r.URL.Path[1:]
 	logrus.Info("GetFileHandler: " + fileName)
-	defer r.Body.Close()
-	
-	return nil
+	return
 }

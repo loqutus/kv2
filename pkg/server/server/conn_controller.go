@@ -8,6 +8,7 @@ import (
 
 // ConnController is the main connections controller.
 func (s Server) ConnController() {
+	s.nodes = make(map[string]client.Client)
 	for _, n := range s.nodeNames {
 		var cli client.Client
 		cli.Host = n[0]

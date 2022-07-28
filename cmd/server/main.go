@@ -2,6 +2,7 @@ package main
 
 import (
 	"github.com/rusik69/kv2/pkg/server/argparse"
+	"github.com/rusik69/kv2/pkg/server/fileserver"
 	"github.com/rusik69/kv2/pkg/server/logger"
 	"github.com/rusik69/kv2/pkg/server/server"
 )
@@ -11,7 +12,9 @@ func main() {
 	logger.SetLoggerFormat()
 	args := argparse.Parse()
 	server.ServerInstance.SetupArgs(args)
+	fileserver.FileServerInstance.SetupArgs(args)
 	go server.ServerInstance.MemController()
 	go server.ServerInstance.ConnController()
+	go fileserver.FileServerInstance.Serve()
 	server.ServerInstance.Serve()
 }

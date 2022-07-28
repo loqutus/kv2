@@ -12,7 +12,7 @@ import (
 
 // ServerHandler is the main server handler.
 func (s *Server) ServerHandler(conn net.Conn) {
-	logrus.Println("server handler")
+	logrus.Info("server handler")
 	defer conn.Close()
 	for {
 		conn.SetDeadline(time.Now().Add(time.Second * 60))

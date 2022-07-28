@@ -9,4 +9,5 @@ type Args struct {
 	Replicas             int
 	NodeNames            [][]string
 	Debug                bool
+	FileServerDir        string
 }
