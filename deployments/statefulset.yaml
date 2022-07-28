@@ -35,6 +35,8 @@ spec:
               value: "http://pyroscope:4040"
             - name: KV2_DEBUG
               value: "true"
+            - name: KV2_NODES
+              value: "kv2-0:6969,kv2-1:6969,kv2-2:6969"
           securityContext:
             capabilities:
               add:

@@ -6,6 +6,7 @@ import (
 	"github.com/rusik69/kv2/pkg/client/client"
 )
 
+// ConnController is the main connections controller.
 func (s Server) ConnController() {
 	for _, n := range s.nodeNames {
 		var cli client.Client
@@ -19,7 +20,9 @@ func (s Server) ConnController() {
 		if err != nil {
 			continue
 		}
-		s.nodes[id] = cli
+		if id != s.id {
+			s.nodes[id] = cli
+		}
 	}
 	for {
 		for id, cli := range s.nodes {

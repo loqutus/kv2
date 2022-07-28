@@ -2,6 +2,7 @@ package argparse
 
 import "strings"
 
+// parse nodes environment variable
 func parseNodes(nodesString string) [][]string {
 	if nodesString == "" {
 		return nil
