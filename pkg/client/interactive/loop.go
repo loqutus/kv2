@@ -27,6 +27,17 @@ func Loop(c client.Client) {
 			} else {
 				fmt.Println("OK")
 			}
+		case "upload":
+			if key == "" {
+				fmt.Println("Usage: upload <filename>")
+				continue
+			}
+			err := c.Upload(key)
+			if err != nil {
+				fmt.Println(err)
+			} else {
+				fmt.Println("OK")
+			}
 		case "get":
 			if key == "" {
 				fmt.Println("Usage: get <key>")

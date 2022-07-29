@@ -28,7 +28,7 @@ func Parse() Args {
 		ListenHost = "127.0.0.1"
 	}
 	// Memory limit.
-	memLimit, err := strconv.Atoi(os.Getenv("KV2_MEM_LIMIT"))
+	memLimit, err := strconv.Atoi(os.Getenv("KV2_MEMORY_LIMIT"))
 	if memLimit == 0 || err != nil {
 		memLimit = 1024 * 1024 * 1024
 	}
