@@ -30,6 +30,8 @@ func (s *Server) ServeServer() {
 		conn, err := s.listenerServer.Accept()
 		if err != nil {
 			log.Fatal(err)
+			s.listenerServer.Close()
+			continue
 		}
 		logrus.Println("server connected")
 		go s.ServerHandler(conn)
@@ -45,6 +47,8 @@ func (s *Server) ServeClient() {
 		conn, err := s.listenerClient.Accept()
 		if err != nil {
 			log.Fatal(err)
+			s.listenerServer.Close()
+			continue
 		}
 		logrus.Println("client connected")
 		go s.ClientHandler(conn)

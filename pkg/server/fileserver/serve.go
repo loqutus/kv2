@@ -14,6 +14,5 @@ func (s *FileServer) Serve() {
 	r.Get("/*", s.GetFileHandler)
 	r.Post("/*", s.PostFileHandler)
 	r.Delete("/*", s.DeleteFileHandler)
-	r.Get("/info", s.InfoHandler)
 	http.ListenAndServe(s.listenHost+":"+s.listenPort, r)
 }

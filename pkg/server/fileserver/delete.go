@@ -2,6 +2,8 @@ package fileserver
 
 import (
 	"net/http"
+	"os"
+	"path"
 
 	"github.com/sirupsen/logrus"
 )
@@ -16,7 +18,14 @@ func (s *FileServer) DeleteFileHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	fileName := r.URL.Path[1:]
-	logrus.Info("DeleteFileHandler: " + fileName)
+	logrus.Debug("DeleteFileHandler: " + fileName)
 	defer r.Body.Close()
+	fileNameWithPath := path.Join(s.filesDir, fileName)
+	err := os.Remove(fileNameWithPath)
+	if err != nil {
+		Error(err, w)
+		return
+	}
+	w.WriteHeader(http.StatusOK)
 	return
 }

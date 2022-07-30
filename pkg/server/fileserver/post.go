@@ -1,7 +1,11 @@
 package fileserver
 
 import (
+	"errors"
+	"io"
 	"net/http"
+	"os"
+	"path"
 
 	"github.com/sirupsen/logrus"
 )
@@ -10,13 +14,26 @@ import (
 func (s *FileServer) PostFileHandler(w http.ResponseWriter, r *http.Request) {
 	defer r.Body.Close()
 	if len(r.URL.Path) < 2 {
-		logrus.Info("PostFileHandler: file name is not specified")
-		w.Write([]byte("file name is not specified"))
-		r.Response.StatusCode = http.StatusBadRequest
+		Error(errors.New("file name is not specified"), w)
 		return
 	}
 	fileName := r.URL.Path[1:]
-	logrus.Info("PostFileHandler: " + fileName)
-	defer r.Body.Close()
+	fileNameWithPath := path.Join(s.filesDir, fileName)
+	logrus.Debug("PostFileHandler: " + fileName)
+	err := s.EnsureDir(fileNameWithPath)
+	if err != nil {
+		Error(err, w)
+		return
+	}
+	file, err := os.Create(fileNameWithPath)
+	if err != nil {
+		Error(err, w)
+		return
+	}
+	_, err = io.Copy(file, r.Body)
+	if err != nil {
+		Error(err, w)
+		return
+	}
 	return
 }

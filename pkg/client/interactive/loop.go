@@ -28,11 +28,11 @@ func Loop(c client.Client) {
 				fmt.Println("OK")
 			}
 		case "upload":
-			if key == "" {
-				fmt.Println("Usage: upload <filename>")
+			if key == "" || len(value) == 0 {
+				fmt.Println("Usage: upload <source> <destination>")
 				continue
 			}
-			err := c.Upload(key)
+			err := c.Upload(key, value)
 			if err != nil {
 				fmt.Println(err)
 			} else {
@@ -49,12 +49,34 @@ func Loop(c client.Client) {
 			} else {
 				fmt.Println(string(value))
 			}
+		case "download":
+			if key == "" {
+				fmt.Println("Usage: download <filename>")
+				continue
+			}
+			err := c.Download(key)
+			if err != nil {
+				fmt.Println(err)
+			} else {
+				fmt.Println("OK")
+			}
 		case "del":
 			if key == "" {
 				fmt.Println("Usage: del <key>")
 				continue
 			}
 			err := c.Del(key)
+			if err != nil {
+				fmt.Println(err)
+			} else {
+				fmt.Println("OK")
+			}
+		case "delfile":
+			if key == "" {
+				fmt.Println("Usage: delfile <key>")
+				continue
+			}
+			err := c.DelFile(key)
 			if err != nil {
 				fmt.Println(err)
 			} else {
