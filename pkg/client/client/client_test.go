@@ -12,6 +12,7 @@ func TestClient(t *testing.T) {
 	var c1 Client
 	argparse.ArgsInstance.ServerHost = "kv2"
 	argparse.ArgsInstance.ServerPort = "6969"
+	argparse.ArgsInstance.ServerFilesPort = "6971"
 	c1.Init(argparse.ArgsInstance)
 	err := c1.Connect()
 	if err != nil {
