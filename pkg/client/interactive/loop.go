@@ -32,7 +32,7 @@ func Loop(c client.Client) {
 				fmt.Println("Usage: upload <source> <destination>")
 				continue
 			}
-			err := c.Upload(key, value)
+			err := c.Upload(key, string(value))
 			if err != nil {
 				fmt.Println(err)
 			} else {

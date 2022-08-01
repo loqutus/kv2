@@ -2,6 +2,7 @@ package client
 
 import (
 	"fmt"
+	"os"
 	"testing"
 
 	"github.com/rusik69/kv2/pkg/client/argparse"
@@ -35,6 +36,43 @@ func TestClient(t *testing.T) {
 			if value[i] != expected[i] {
 				t.Error("Expected value to be 'value', got:", string(value))
 			}
+		}
+	})
+	t.Run("upload", func(t *testing.T) {
+		f, err := os.CreateTemp("", "kv2-test")
+		if err != nil {
+			t.Error(err)
+		}
+		defer f.Close()
+		defer os.Remove(f.Name())
+		_, err = f.WriteString("test")
+		if err != nil {
+			t.Error(err)
+		}
+		err = c1.Upload(f.Name(), "test")
+		if err != nil {
+			t.Error(err)
+		}
+	})
+	t.Run("download", func(t *testing.T) {
+		err := c1.Download("test")
+		if err != nil {
+			t.Error(err)
+		}
+		f, err := os.Open("test")
+		if err != nil {
+			t.Error(err)
+		}
+		defer f.Close()
+		defer os.Remove(f.Name())
+		b := make([]byte, 4)
+		l, err := f.Read(b)
+		if err != nil {
+			t.Error(err)
+		} else if l != 4 {
+			t.Error("Expected 4 bytes, got:", l)
+		} else if string(b) != "test" {
+			t.Error("Expected file to contain 'test', got:", b)
 		}
 	})
 	// t.Run("addnode", func(t *testing.T) {

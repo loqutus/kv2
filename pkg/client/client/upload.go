@@ -7,13 +7,13 @@ import (
 )
 
 // Upload is a function that uploads a file to the server.
-func (c *Client) Upload(source string, destination []byte) error {
+func (c *Client) Upload(source string, destination string) error {
 	f, err := os.Open(source)
 	if err != nil {
 		return err
 	}
 	defer f.Close()
-	url := "http://" + c.Host + ":" + c.FilesPort + "/" + string(destination)
+	url := "http://" + c.Host + ":" + c.FilesPort + "/" + destination
 	client := http.Client{
 		Timeout: c.Timeout,
 	}
