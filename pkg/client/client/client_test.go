@@ -89,13 +89,13 @@ func BenchmarkClient(b *testing.B) {
 	// if err != nil {
 	// 	b.Error(err)
 	// }
-	for n := 0; n < 1000; n++ {
+	for n := 0; n < 100000; n++ {
 		err := c.Set(fmt.Sprint(n), []byte(fmt.Sprintf("%d", n)))
 		if err != nil {
 			b.Error(err)
 		}
 	}
-	for n := 0; n < 1000; n++ {
+	for n := 0; n < 100000; n++ {
 		_, err := c.Get(fmt.Sprint(n))
 		if err != nil {
 			b.Error(err)
