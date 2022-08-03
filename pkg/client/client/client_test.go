@@ -69,6 +69,7 @@ func TestClient(t *testing.T) {
 		b := make([]byte, 4)
 		l, err := f.Read(b)
 		if err != nil {
+			t.Error(b)
 			t.Error(err)
 		} else if l != 4 {
 			t.Error("Expected 4 bytes, got:", l)
