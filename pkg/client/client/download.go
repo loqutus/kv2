@@ -2,6 +2,7 @@ package client
 
 import (
 	"errors"
+	"io"
 	"net/http"
 	"os"
 )
@@ -27,6 +28,10 @@ func (c *Client) Download(fileName string) error {
 	}
 	if resp.StatusCode != http.StatusOK {
 		return errors.New(resp.Status)
+	}
+	_, err = io.Copy(f, resp.Body)
+	if err != nil {
+		return err
 	}
 	return nil
 }
