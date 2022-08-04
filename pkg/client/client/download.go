@@ -5,33 +5,28 @@ import (
 	"io"
 	"net/http"
 	"os"
+	"path/filepath"
 )
 
 // Download is a function that downloads a file from the server.
 func (c *Client) Download(fileName string) error {
-	f, err := os.Create(fileName)
-	if err != nil {
-		return err
-	}
-	defer f.Close()
 	url := "http://" + c.Host + ":" + c.FilesPort + "/" + fileName
 	client := http.Client{
 		Timeout: c.Timeout,
 	}
-	req, err := http.NewRequest("GET", url, f)
+	resp, err := client.Get(url)
 	if err != nil {
 		return err
 	}
-	resp, err := client.Do(req)
-	if err != nil {
-		return err
-	}
+	defer resp.Body.Close()
 	if resp.StatusCode != http.StatusOK {
 		return errors.New(resp.Status)
 	}
-	_, err = io.Copy(f, resp.Body)
+	f, err := os.Create(filepath.Base(fileName))
 	if err != nil {
 		return err
 	}
-	return nil
+	defer f.Close()
+	_, err = io.Copy(f, resp.Body)
+	return err
 }
