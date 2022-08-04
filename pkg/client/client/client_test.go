@@ -111,9 +111,9 @@ func BenchmarkClient(b *testing.B) {
 		}
 	}
 	var c0, c1, c2 Client
-	c0.Init(argparse.Args{ServerHost: "kv2-0", ServerPort: "6969", ServerFilesPort: "6971"})
-	c1.Init(argparse.Args{ServerHost: "kv2-1", ServerPort: "6969", ServerFilesPort: "6971"})
-	c2.Init(argparse.Args{ServerHost: "kv2-2", ServerPort: "6969", ServerFilesPort: "6971"})
+	c0.Init(argparse.Args{ServerHost: "kv2-0.default.svc.cluster.local", ServerPort: "6969", ServerFilesPort: "6971"})
+	c1.Init(argparse.Args{ServerHost: "kv2-1.default.svc.cluster.local", ServerPort: "6969", ServerFilesPort: "6971"})
+	c2.Init(argparse.Args{ServerHost: "kv2-2.default.svc.cluster.local", ServerPort: "6969", ServerFilesPort: "6971"})
 	err = c0.Connect()
 	if err != nil {
 		b.Error(err)
