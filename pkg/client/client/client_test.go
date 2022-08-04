@@ -69,7 +69,6 @@ func TestClient(t *testing.T) {
 		b := make([]byte, 4)
 		l, err := f.Read(b)
 		if err != nil {
-			t.Error(b)
 			t.Error(err)
 		} else if l != 4 {
 			t.Error("Expected 4 bytes, got:", l)
@@ -77,24 +76,6 @@ func TestClient(t *testing.T) {
 			t.Error("Expected file to contain 'test', got:", b)
 		}
 	})
-	// t.Run("addnode", func(t *testing.T) {
-	// 	err := c1.AddNode("localhost", "6969")
-	// 	if err != nil {
-	// 		t.Error(err)
-	// 	}
-	// })
-	// t.Run("delnode", func(t *testing.T) {
-	// 	err := c1.DelNode("localhost", "6969")
-	// 	if err != nil {
-	// 		t.Error(err)
-	// 	}
-	// })
-	// t.Run("setreplicas", func(t *testing.T) {
-	// 	err := c1.SetReplicas("2")
-	// 	if err != nil {
-	// 		t.Error(err)
-	// 	}
-	// })
 	t.Run("info", func(t *testing.T) {
 		infoString, err := c1.Info()
 		if err != nil {
@@ -117,18 +98,6 @@ func BenchmarkClient(b *testing.B) {
 	if err != nil {
 		b.Error(err)
 	}
-	// err = c.AddNode("kv2-1", "6969")
-	// if err != nil {
-	// 	b.Error(err)
-	// }
-	// err = c.AddNode("kv2-2", "6969")
-	// if err != nil {
-	// 	b.Error(err)
-	// }
-	// err = c.SetReplicas("3")
-	// if err != nil {
-	// 	b.Error(err)
-	// }
 	for n := 0; n < 100000; n++ {
 		err := c.Set(fmt.Sprint(n), []byte(fmt.Sprintf("%d", n)))
 		if err != nil {
@@ -141,30 +110,35 @@ func BenchmarkClient(b *testing.B) {
 			b.Error(err)
 		}
 	}
-	info1, err := c.Info()
+	var c0, c1, c2 Client
+	c0.Init(argparse.Args{ServerHost: "kv2-0", ServerPort: "6969", ServerFilesPort: "6971"})
+	c1.Init(argparse.Args{ServerHost: "kv2-1", ServerPort: "6969", ServerFilesPort: "6971"})
+	c2.Init(argparse.Args{ServerHost: "kv2-2", ServerPort: "6969", ServerFilesPort: "6971"})
+	err = c0.Connect()
+	if err != nil {
+		b.Error(err)
+	}
+	err = c1.Connect()
+	if err != nil {
+		b.Error(err)
+	}
+	err = c2.Connect()
+	if err != nil {
+		b.Error(err)
+	}
+	info0, err := c0.Info()
+	if err != nil {
+		b.Error(err)
+	}
+	fmt.Println(info0)
+	info1, err := c1.Info()
 	if err != nil {
 		b.Error(err)
 	}
 	fmt.Println(info1)
-	// var c2, c3 Client
-	// c2.Init(argparse.Args{ServerHost: "127.0.0.1", ServerPort: "6971"})
-	// c3.Init(argparse.Args{ServerHost: "127.0.0.1", ServerPort: "6973"})
-	// err = c2.Connect()
-	// if err != nil {
-	// 	b.Error(err)
-	// }
-	// err = c3.Connect()
-	// if err != nil {
-	// 	b.Error(err)
-	// }
-	// info2, err := c2.Info()
-	// if err != nil {
-	// 	b.Error(err)
-	// }
-	// fmt.Println(info2)
-	// info3, err := c3.Info()
-	// if err != nil {
-	// 	b.Error(err)
-	// }
-	// fmt.Println(info3)
+	info2, err := c2.Info()
+	if err != nil {
+		b.Error(err)
+	}
+	fmt.Println(info2)
 }

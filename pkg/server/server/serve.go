@@ -47,7 +47,6 @@ func (s *Server) ServeClient() {
 		conn, err := s.listenerClient.Accept()
 		if err != nil {
 			log.Fatal(err)
-			s.listenerServer.Close()
 			continue
 		}
 		logrus.Println("client connected")
