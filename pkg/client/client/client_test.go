@@ -110,35 +110,35 @@ func BenchmarkClient(b *testing.B) {
 			b.Error(err)
 		}
 	}
-	var c0, c1, c2 Client
-	c0.Init(argparse.Args{ServerHost: "kv2-0.default.svc.cluster.local", ServerPort: "6969", ServerFilesPort: "6971"})
-	c1.Init(argparse.Args{ServerHost: "kv2-1.default.svc.cluster.local", ServerPort: "6969", ServerFilesPort: "6971"})
-	c2.Init(argparse.Args{ServerHost: "kv2-2.default.svc.cluster.local", ServerPort: "6969", ServerFilesPort: "6971"})
-	err = c0.Connect()
-	if err != nil {
-		b.Error(err)
-	}
-	err = c1.Connect()
-	if err != nil {
-		b.Error(err)
-	}
-	err = c2.Connect()
-	if err != nil {
-		b.Error(err)
-	}
-	info0, err := c0.Info()
-	if err != nil {
-		b.Error(err)
-	}
-	fmt.Println(info0)
-	info1, err := c1.Info()
-	if err != nil {
-		b.Error(err)
-	}
-	fmt.Println(info1)
-	info2, err := c2.Info()
-	if err != nil {
-		b.Error(err)
-	}
-	fmt.Println(info2)
+	// var c0, c1, c2 Client
+	// c0.Init(argparse.Args{ServerHost: "kv2-0.default.svc.cluster.local", ServerPort: "6969", ServerFilesPort: "6971"})
+	// c1.Init(argparse.Args{ServerHost: "kv2-1.default.svc.cluster.local", ServerPort: "6969", ServerFilesPort: "6971"})
+	// c2.Init(argparse.Args{ServerHost: "kv2-2.default.svc.cluster.local", ServerPort: "6969", ServerFilesPort: "6971"})
+	// err = c0.Connect()
+	// if err != nil {
+	// 	b.Error(err)
+	// }
+	// err = c1.Connect()
+	// if err != nil {
+	// 	b.Error(err)
+	// }
+	// err = c2.Connect()
+	// if err != nil {
+	// 	b.Error(err)
+	// }
+	// info0, err := c0.Info()
+	// if err != nil {
+	// 	b.Error(err)
+	// }
+	// fmt.Println(info0)
+	// info1, err := c1.Info()
+	// if err != nil {
+	// 	b.Error(err)
+	// }
+	// fmt.Println(info1)
+	// info2, err := c2.Info()
+	// if err != nil {
+	// 	b.Error(err)
+	// }
+	// fmt.Println(info2)
 }
