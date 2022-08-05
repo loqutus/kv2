@@ -36,7 +36,7 @@ spec:
             - name: KV2_DEBUG
               value: "true"
             - name: KV2_NODES
-              value: "kv2-0:6969,kv2-1:6969,kv2-2:6969"
+              value: "kv2-0:6970,kv2-1:6970,kv2-2:6970"
             - name: KV2_REPLICAS
               value: "3"
             - name: KV2_MEMORY_LIMIT
