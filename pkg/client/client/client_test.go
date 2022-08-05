@@ -116,7 +116,7 @@ func BenchmarkClient(b *testing.B) {
 		}
 	}
 	elapsed = time.Since(start)
-	fmt.Printf("set: %v\n", elapsed)
+	fmt.Printf("get: %v\n", elapsed)
 	// var c0, c1, c2 Client
 	// c0.Init(argparse.Args{ServerHost: "kv2-0.default.svc.cluster.local", ServerPort: "6969", ServerFilesPort: "6971"})
 	// c1.Init(argparse.Args{ServerHost: "kv2-1.default.svc.cluster.local", ServerPort: "6969", ServerFilesPort: "6971"})
