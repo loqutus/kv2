@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"os"
 	"testing"
+	"time"
 
 	"github.com/rusik69/kv2/pkg/client/argparse"
 )
@@ -98,18 +99,24 @@ func BenchmarkClient(b *testing.B) {
 	if err != nil {
 		b.Error(err)
 	}
+	start := time.Now()
 	for n := 0; n < 100000; n++ {
 		err := c.Set(fmt.Sprint(n), []byte(fmt.Sprintf("%d", n)))
 		if err != nil {
 			b.Error(err)
 		}
 	}
+	elapsed := time.Since(start)
+	fmt.Printf("set: %v\n", elapsed)
+	start = time.Now()
 	for n := 0; n < 100000; n++ {
 		_, err := c.Get(fmt.Sprint(n))
 		if err != nil {
 			b.Error(err)
 		}
 	}
+	elapsed = time.Since(start)
+	fmt.Printf("set: %v\n", elapsed)
 	// var c0, c1, c2 Client
 	// c0.Init(argparse.Args{ServerHost: "kv2-0.default.svc.cluster.local", ServerPort: "6969", ServerFilesPort: "6971"})
 	// c1.Init(argparse.Args{ServerHost: "kv2-1.default.svc.cluster.local", ServerPort: "6969", ServerFilesPort: "6971"})
