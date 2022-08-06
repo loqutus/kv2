@@ -23,6 +23,7 @@ type Server struct {
 	memLimit         uint64
 	memUsage         uint64
 	debug            bool
+	mutex            sync.RWMutex
 }
 
 // ServerInstance is the main server instance.
