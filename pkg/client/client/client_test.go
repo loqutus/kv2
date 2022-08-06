@@ -77,6 +77,12 @@ func TestClient(t *testing.T) {
 			t.Error("Expected file to contain 'test', got:", b)
 		}
 	})
+	t.Run("delete", func(t *testing.T) {
+		err := c1.DelFile("test")
+		if err != nil {
+			t.Error(err)
+		}
+	})
 	t.Run("info", func(t *testing.T) {
 		infoString, err := c1.Info()
 		if err != nil {

@@ -24,6 +24,7 @@ type Server struct {
 	memUsage         uint64
 	debug            bool
 	mutex            sync.RWMutex
+	stateDir         string
 }
 
 // ServerInstance is the main server instance.
