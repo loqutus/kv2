@@ -11,4 +11,5 @@ func (s *Server) SetupArgs(args argparse.Args) {
 	s.memLimit = args.MemLimit
 	s.nodeNames = args.NodeNames
 	s.debug = args.Debug
+	s.stateDir = args.StateDir
 }

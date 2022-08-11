@@ -40,6 +40,12 @@ func TestClient(t *testing.T) {
 			}
 		}
 	})
+	t.Run("del", func(t *testing.T) {
+		err := c1.Del("key")
+		if err != nil {
+			t.Error(err)
+		}
+	})
 	t.Run("upload", func(t *testing.T) {
 		f, err := os.CreateTemp("", "kv2-test")
 		if err != nil {

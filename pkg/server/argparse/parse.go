@@ -48,6 +48,11 @@ func Parse() Args {
 	if fileServerDir == "" {
 		fileServerDir = "/tmp/kv2/fileserver"
 	}
+	// kv state directory.
+	stateDir := os.Getenv("KV2_STATE_DIR")
+	if stateDir == "" {
+		stateDir = "/tmp/kv2/state"
+	}
 	// nodes list
 	var nodes [][]string
 	nodesString := os.Getenv("KV2_NODES")
@@ -62,5 +67,6 @@ func Parse() Args {
 		NodeNames:            nodes,
 		Debug:                debug,
 		FileServerDir:        fileServerDir,
+		StateDir:             stateDir,
 	}
 }

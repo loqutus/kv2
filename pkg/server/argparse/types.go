@@ -10,4 +10,5 @@ type Args struct {
 	NodeNames            [][]string
 	Debug                bool
 	FileServerDir        string
+	StateDir             string
 }
