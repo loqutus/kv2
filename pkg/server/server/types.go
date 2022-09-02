@@ -16,7 +16,7 @@ type Server struct {
 	listenerServer   net.Listener
 	listenerClient   net.Listener
 	wg               sync.WaitGroup
-	kv               map[string][]byte
+	kv               map[string]int64
 	nodes            map[string]client.Client
 	nodeNames        [][]string
 	replicas         int

@@ -9,7 +9,7 @@ func (s *Server) Get(c Command) ([]byte, error) {
 	s.mutex.RLock()
 	defer s.mutex.RUnlock()
 	if v, ok := s.kv[c.Key]; ok {
-		return v, nil
+		return s.kv, nil
 	} else {
 		return nil, errors.New("key not found")
 	}

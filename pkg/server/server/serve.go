@@ -3,7 +3,6 @@ package server
 import (
 	"log"
 
-	"github.com/google/uuid"
 	"github.com/sirupsen/logrus"
 )
 
@@ -13,9 +12,6 @@ func (s *Server) Serve() {
 	if s.debug {
 		startPyroscope()
 	}
-	s.kv = make(map[string][]byte)
-	s.id = uuid.New().String()
-	s.replicas = 1
 	s.listenerClient, s.listenerServer = s.Listen()
 	s.wg.Add(2)
 	go s.ServeServer()

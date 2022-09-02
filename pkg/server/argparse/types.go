@@ -11,4 +11,5 @@ type Args struct {
 	Debug                bool
 	FileServerDir        string
 	StateDir             string
+	StateFile            string
 }

@@ -4,6 +4,7 @@ import (
 	"github.com/rusik69/kv2/pkg/server/argparse"
 	"github.com/rusik69/kv2/pkg/server/fileserver"
 	"github.com/rusik69/kv2/pkg/server/logger"
+	"github.com/rusik69/kv2/pkg/server/persistent"
 	"github.com/rusik69/kv2/pkg/server/server"
 )
 
@@ -13,6 +14,8 @@ func main() {
 	args := argparse.Parse()
 	server.ServerInstance.SetupArgs(args)
 	fileserver.FileServerInstance.SetupArgs(args)
+	server.ServerInstance.Init(args)
+	defer persistent.PersistentInstance.F.Close()
 	go server.ServerInstance.MemController()
 	go server.ServerInstance.ConnController()
 	go fileserver.FileServerInstance.Serve()
