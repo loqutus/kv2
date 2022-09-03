@@ -10,11 +10,11 @@ func (p *Persistent) readKV(kv map[string]int64) error {
 	var offset int64
 	scanner := bufio.NewScanner(p.F)
 	for scanner.Scan() {
-		key, err := p.parseLine(scanner.Text())
+		data, err := p.parseLine(scanner.Text())
 		if err != nil {
 			continue
 		}
-		kv[string(key)] = offset
+		kv[string(data.Key)] = offset
 		currentOffset, err := p.F.Seek(0, io.SeekCurrent)
 		if err != nil {
 			return err
