@@ -6,9 +6,15 @@ import (
 )
 
 // Set is a function that sets a key-value pair in the file
-func (p *Persistent) Set(data BinaryData) (int64, error) {
-	off := p.offset
-	currentOffset := p.offset
+func (p *Persistent) Set(offset int64, data BinaryData) (int64, error) {
+	var off, currentOffset int64
+	if offset == 0 {
+		off = p.offset
+		currentOffset = p.offset
+	} else {
+		off = offset
+		currentOffset = offset
+	}
 	var buf bytes.Buffer
 	enc := gob.NewEncoder(&buf)
 	err := enc.Encode(data)
@@ -24,6 +30,8 @@ func (p *Persistent) Set(data BinaryData) (int64, error) {
 	if err != nil {
 		return 0, err
 	}
-	p.offset = currentOffset + 1
+	if offset == 0 {
+		p.offset = currentOffset + 1
+	}
 	return off, nil
 }

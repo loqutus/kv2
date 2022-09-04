@@ -7,7 +7,11 @@ func (s *Server) Set(c Command) error {
 	s.mutex.Lock()
 	defer s.mutex.Unlock()
 	data := persistent.BinaryData{Key: []byte(c.Key), Val: c.Value, Del: false}
-	offset, err := persistent.PersistentInstance.Set(data)
+	var offset int64
+	if v, ok := s.kv[c.Key]; ok {
+		offset = v
+	}
+	offset, err := persistent.PersistentInstance.Set(offset, data)
 	if err != nil {
 		return err
 	}
