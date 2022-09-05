@@ -14,6 +14,7 @@ func (s *Server) Del(c Command) error {
 			return err
 		}
 		delete(s.kv, c.Key)
+		return nil
 	} else {
 		return errors.New("key not found")
 	}
