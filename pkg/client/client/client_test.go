@@ -112,7 +112,7 @@ func BenchmarkClient(b *testing.B) {
 		b.Error(err)
 	}
 	start := time.Now()
-	for n := 0; n < 100000; n++ {
+	for n := 0; n < 1000; n++ {
 		err := c.Set(fmt.Sprint(n), []byte(fmt.Sprintf("%d", n)))
 		if err != nil {
 			b.Error(err)

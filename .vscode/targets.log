@@ -6,8 +6,9 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 # PARTICULAR PURPOSE.
 
 # This program built for i386-apple-darwin11.3.0
+ 
 
-# Make data base, printed on Fri Jul 15 16:12:57 2022
+# Make data base, printed on Sat Sep  3 23:25:49 2022
 
 # Variables
 
@@ -52,7 +53,8 @@ ELECTRON_RUN_AS_NODE = 1
 # default
 .FEATURES := target-specific order-only second-expansion else-if archives jobserver check-symlink
 # environment
-SSH_AUTH_SOCK = /private/tmp/com.apple.launchd.LB0WUUgHmR/Listeners
+SSH_AUTH_SOCK = /private/tmp/com.apple.launchd.96amU73fQB/Listeners
+ 
 # automatic
 %F = $(notdir $%)
 # environment
@@ -70,7 +72,7 @@ HOME = /Users/rusik
 # default
 MAKEFILEPATH = $(shell /usr/bin/xcode-select -print-path 2>/dev/null || echo /Developer)/Makefiles
 # environment
-VSCODE_CODE_CACHE_PATH = /Users/rusik/Library/Application Support/Code/CachedData/b06ae3b2d2dbfe28bca3134cc6be65935cdfea6a
+VSCODE_CODE_CACHE_PATH = /Users/rusik/Library/Application Support/Code/CachedData/e4503b30fc78200f846c62cf8091b76ff5547662
 # environment
 LOGNAME = rusik
 # environment
@@ -104,7 +106,7 @@ TMPDIR = /var/folders/mq/sb26t1d93sg_j5s3xc1m0tbw0000gn/T/
 # automatic
 *F = $(notdir $*)
 # environment
-VSCODE_IPC_HOOK = /Users/rusik/Library/Application Support/Code/1.69.1-main.sock
+VSCODE_IPC_HOOK = /Users/rusik/Library/Application Support/Code/1.70.2-main.sock
 # environment
 MallocNanoZone = 0
 # makefile
@@ -114,7 +116,7 @@ MFLAGS = -Rrqp
 # automatic
 *D = $(patsubst %/,%,$(dir $*))
 # environment
-XPC_SERVICE_NAME = application.com.microsoft.VSCode.19389211.19389217
+XPC_SERVICE_NAME = application.com.microsoft.VSCode.26293306.26293312
 # environment
 HOMEBREW_PREFIX = /opt/homebrew
 # automatic
@@ -146,7 +148,7 @@ LANG = C
 # environment
 DOCKER_HOST = unix:///Users/rusik/.local/share/containers/podman/machine/podman-machine-default/podman.sock
 # environment
-VSCODE_PID = 1618
+VSCODE_PID = 88750
 # variable set hash-table stats:
 # Load=68/1024=7%, Rehash=0, Collisions=2/93=2%
 
@@ -156,7 +158,7 @@ VSCODE_PID = 1618
 
 # Directories
 
-# . (device 16777234, inode 12467985): 18 files, no impossibilities.
+# . (device 16777232, inode 12467985): 18 files, no impossibilities.
 
 # 18 files, no impossibilities in 1 directories.
 
@@ -189,14 +191,14 @@ uninstall:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
-#  commands to execute (from `Makefile', line 67):
+#  commands to execute (from `Makefile', line 69):
 	kubectl delete -f deployments/ || true
 	
 
 # Not a target:
 Makefile:
 #  Implicit rule search has been done.
-#  Last modified 2022-07-13 23:24:36
+#  Last modified 2022-08-24 15:40:04
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -207,7 +209,7 @@ test:
 #  Modification time never checked.
 #  File has not been updated.
 #  commands to execute (from `Makefile', line 41):
-	cd pkg/client/client && go test -count=1 -v -bench ./ && go test -count=1 -v -cpuprofile cpu.profile -memprofile mem.profile
+	cd pkg/client/client && go test -count=1 -v -bench ./
 	
 
 build:
@@ -267,7 +269,9 @@ docker_amd64:
 #  File has not been updated.
 #  commands to execute (from `Makefile', line 60):
 	docker build . -f Dockerfile-amd64 -t loqutus/kv2:latest-amd64
+	docker build . -f Dockerfile-test -t loqutus/kv2-test:latest-amd64
 	docker push loqutus/kv2:latest-amd64
+	docker push loqutus/kv2-test:latest-amd64
 	
 
 run:
@@ -276,7 +280,6 @@ run:
 #  File has not been updated.
 #  commands to execute (from `Makefile', line 32):
 	./bin/kv2-linux-arm64 &
- 
 	KV2_LISTEN_PORT_CLIENT=6971 KV2_LISTEN_PORT_SERVER=6972 ./bin/kv2-linux-arm64 &
 	KV2_LISTEN_PORT_CLIENT=6973 KV2_LISTEN_PORT_SERVER=6974 ./bin/kv2-linux-arm64 &
 	
@@ -293,8 +296,8 @@ logs:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
-#  commands to execute (from `Makefile', line 70):
-	kubectl wait --timeout=60s --for=condition=complete job/kv2-test
+#  commands to execute (from `Makefile', line 72):
+	kubectl wait --timeout=120s --for=condition=complete job/kv2-test || true
 	kubectl logs job/kv2-test
 	
 
@@ -321,14 +324,15 @@ docker_arm64:
 #  File has not been updated.
 #  commands to execute (from `Makefile', line 54):
 	docker build . -f Dockerfile-arm64 -t loqutus/kv2:latest-arm64
-	docker build . -f Dockerfile-test -t loqutus/kv2-test:latest
+	docker build . -f Dockerfile-test -t loqutus/kv2-test:latest-arm64
 	docker push loqutus/kv2:latest-arm64
-	docker push loqutus/kv2-test:latest
+	docker push loqutus/kv2-test:latest-arm64
 	
 
 get:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
+ 
 #  File has not been updated.
 #  commands to execute (from `Makefile', line 44):
 	go mod tidy
@@ -339,7 +343,7 @@ install:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
-#  commands to execute (from `Makefile', line 64):
+#  commands to execute (from `Makefile', line 66):
 	kubectl apply -f deployments/
 	
 
@@ -356,6 +360,6 @@ install:
 # strcache size: total = 4096 / max = 4096 / min = 4096 / avg = 4096
 # strcache free: total = 4087 / max = 4087 / min = 4087 / avg = 4087
 
-# Finished Make data base on Fri Jul 15 16:12:57 2022
+# Finished Make data base on Sat Sep  3 23:25:49 2022
 
  
