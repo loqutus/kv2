@@ -18,7 +18,7 @@ spec:
         app: kv2
     spec:
       volumes:
-        - name: task-pv-storage
+        - name: kv2-data
           persistentVolumeClaim:
             claimName: kv2-data
       containers:
