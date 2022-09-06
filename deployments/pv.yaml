@@ -7,3 +7,5 @@ spec:
     requests:
       storage: 1Gi
   storageClassName: default
+  accessModes:
+    - ReadWriteOnce
