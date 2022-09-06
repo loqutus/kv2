@@ -17,6 +17,10 @@ spec:
       labels:
         app: kv2
     spec:
+      volumes:
+        - name: task-pv-storage
+          persistentVolumeClaim:
+            claimName: kv2-data
       containers:
         - image: loqutus/kv2:latest-arm64
           name: kv2
@@ -28,6 +32,9 @@ spec:
             limits:
               memory: "8192Mi"
               cpu: "4096m"
+          volumeMounts:
+            - mountPath: "/tmp/kv2/state"
+              name: kv2-data
           env:
             - name: KV2_LISTEN_HOST
               value: "0.0.0.0"
