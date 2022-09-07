@@ -17,10 +17,6 @@ spec:
       labels:
         app: kv2
     spec:
-      volumes:
-        - name: kv2-data
-          persistentVolumeClaim:
-            claimName: kv2-data
       containers:
         - image: loqutus/kv2:latest-arm64
           name: kv2
@@ -64,3 +60,12 @@ spec:
             periodSeconds: 1
       nodeSelector:
         kubernetes.io/arch: arm64
+  volumeClaimTemplates:
+    - metadata:
+      name: kv2-data
+      spec:
+        accessModes: [ "ReadWriteOnce" ]
+        storageClassName: "local-path"
+      resources:
+        requests:
+          storage: 1Gi
