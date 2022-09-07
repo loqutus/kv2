@@ -62,7 +62,7 @@ spec:
         kubernetes.io/arch: arm64
   volumeClaimTemplates:
     - metadata:
-      name: kv2-data
+        name: kv2-data
       spec:
         accessModes: [ "ReadWriteOnce" ]
         storageClassName: "local-path"
