@@ -23,7 +23,7 @@ func (s *Server) Init(args argparse.Args) error {
 // getID is a function that gets the server id from the file.
 func (s *Server) getID() string {
 	fileName := path.Join(s.stateDir, "id")
-	if _, err := os.Stat("/path/to/whatever"); errors.Is(err, os.ErrNotExist) {
+	if _, err := os.Stat(fileName); errors.Is(err, os.ErrNotExist) {
 		return uuid.New().String()
 	} else {
 		fileBytes, err := ioutil.ReadFile(fileName)

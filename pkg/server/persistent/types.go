@@ -20,4 +20,4 @@ type Persistent struct {
 }
 
 // PersistentInstance is a global persistent instance.
-var PersistentInstance *Persistent
+var PersistentInstance Persistent
