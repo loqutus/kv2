@@ -16,6 +16,10 @@ build:
 	CGO_ENABLED=0 GOARCH=amd64 GOOS=darwin go build -o bin/${BINARY_NAME}-client-mac-amd64 cmd/client/main.go
 	chmod +x bin/*
 
+buildx:
+	docker buildx build --platform="linux/amd64,linux/arm64" -t loqutus/kv2:latest .
+	docker push loqutus/kv2:latest
+
 build_mac_arm64:
 	CGO_ENABLED=0 GOARCH=arm64 GOOS=darwin go build -o bin/${BINARY_NAME}-mac-arm64 cmd/server/main.go
 	CGO_ENABLED=0 GOARCH=arm64 GOOS=darwin go build -o bin/${BINARY_NAME}-client-mac-arm64 cmd/client/main.go
