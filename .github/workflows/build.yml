@@ -16,10 +16,12 @@ jobs:
         password: ${{ secrets.DOCKERHUB_TOKEN }}
     - name: make uninstall
       run: make uninstall
-    - name: make docker_amd64
-      run: make docker_amd64
-    - name: make docker_arm64
-      run: make docker_arm64
+    # - name: make docker_amd64
+    #   run: make docker_amd64
+    # - name: make docker_arm64
+    #   run: make docker_arm64
+    - name: make buildx
+      run: make buildx
     - name: make install
       run: make install
     - name: make logs
