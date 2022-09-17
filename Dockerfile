@@ -1,6 +1,7 @@
 FROM --platform=$BUILDPLATFORM golang:1.17-alpine AS build-env
 WORKDIR /go/src/github.com/rusik69/kv2
-COPY . ./ARG TARGETOS
+COPY . ./
+ARG TARGETOS
 ARG TARGETARCH
 RUN make get
 RUN make build
