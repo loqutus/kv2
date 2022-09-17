@@ -5,7 +5,7 @@ ARG TARGETOS
 ARG TARGETARCH
 RUN go get ./...
 RUN CGO_ENABLED=0 GOOS=${TARGETOS} GOARCH=${TARGETARCH} \
-    go build cmd/server/main.go -o /go/bin/server
+    go build -o /go/bin/server cmd/server/main.go 
 
 FROM scratch
 WORKDIR /
