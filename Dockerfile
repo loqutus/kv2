@@ -4,7 +4,6 @@ COPY . ./
 ARG TARGETOS
 ARG TARGETARCH
 RUN make get
-RUN make build
 RUN CGO_ENABLED=0 GOOS=${TARGETOS} GOARCH=${TARGETARCH} \
     go build cmd/server/main.go -o /go/bin/server
 
