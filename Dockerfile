@@ -3,7 +3,7 @@ WORKDIR /go/src/github.com/rusik69/kv2
 COPY . ./
 ARG TARGETOS
 ARG TARGETARCH
-RUN make get
+RUN go get ./...
 RUN CGO_ENABLED=0 GOOS=${TARGETOS} GOARCH=${TARGETARCH} \
     go build cmd/server/main.go -o /go/bin/server
 
