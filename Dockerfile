@@ -1,4 +1,4 @@
-FROM --platform=$BUILDPLATFORM golang:1.17-alpine AS build-env
+FROM --platform=$BUILDPLATFORM golang:1.18-alpine AS build-env
 WORKDIR /go/src/github.com/rusik69/kv2
 COPY . ./
 ARG TARGETOS
