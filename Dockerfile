@@ -7,7 +7,7 @@ RUN go get ./...
 RUN CGO_ENABLED=0 GOOS=${TARGETOS} GOARCH=${TARGETARCH} \
     go build -o /go/bin/server cmd/server/main.go 
 
-FROM scratch
+FROM alpine:latest
 WORKDIR /
 COPY --from=build-env /go/bin/server /usr/bin/kv2
 ENTRYPOINT ["/usr/bin/kv2"]
