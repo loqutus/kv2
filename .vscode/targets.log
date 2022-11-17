@@ -6,14 +6,16 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 # PARTICULAR PURPOSE.
 
 # This program built for i386-apple-darwin11.3.0
+ 
 
-# Make data base, printed on Wed Sep  7 20:42:33 2022
+# Make data base, printed on Wed Nov 16 16:58:39 2022
 
 # Variables
 
 # automatic
 <D = $(patsubst %/,%,$(dir $<))
 # automatic
+ 
 ?F = $(notdir $?)
 # makefile (from `Makefile', line 4)
 BINARY_NAME = kv2
@@ -27,6 +29,8 @@ BINARY_NAME = kv2
 CURDIR := /Users/rusik/go/src/github.com/rusik69/kv2
 # makefile (from `Makefile', line 1)
 SHELL := /bin/bash
+# environment
+GOPROXY = https://proxy.golang.org,direct
 # environment
 VSCODE_NLS_CONFIG = {"locale":"en-gb","availableLanguages":{},"_languagePackSupport":true}
 # environment
@@ -42,25 +46,31 @@ INFOPATH = /opt/homebrew/share/info:
 # environment
 VSCODE_CWD = /
 # environment
-GOPROXY = https://proxy.golang.org,direct
+TESTKIT_AWS_REGION = us-east-1
 # environment
-PATH = /opt/homebrew/bin:/opt/homebrew/sbin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Users/rusik/go/bin
+PATH = /Users/rusik/opt/anaconda3/bin:/Users/rusik/opt/anaconda3/condabin:/opt/homebrew/bin:/opt/homebrew/sbin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Users/rusik/go/bin
+# environment
+TESTKIT_PROJECT_TAG = SUPPORT
+# environment
+TESTKIT_AWS_SECURITY_GROUP = rgustomiasov
 # environment
 GOPATH = /Users/rusik/go
-# environment
-LaunchInstanceID = 68046A12-E4D9-4129-889D-98CA55C52537
 # environment
 ELECTRON_RUN_AS_NODE = 1
 # default
 .FEATURES := target-specific order-only second-expansion else-if archives jobserver check-symlink
 # environment
-SSH_AUTH_SOCK = /private/tmp/com.apple.launchd.c3LhIKPjCf/Listeners
+SSH_AUTH_SOCK = /private/tmp/com.apple.launchd.HLWE1aI90L/Listeners
 # automatic
 %F = $(notdir $%)
+# environment
+CONDA_EXE = /Users/rusik/opt/anaconda3/bin/conda
 # environment
 PWD = /Users/rusik/go/src/github.com/rusik69/kv2
 # environment
 HOMEBREW_CELLAR = /opt/homebrew/Cellar
+# environment
+TESTKIT_DRIVER = aws
 # environment
 ORIGINAL_XDG_CURRENT_DESKTOP = undefined
 # environment
@@ -72,15 +82,19 @@ HOME = /Users/rusik
 # default
 MAKEFILEPATH = $(shell /usr/bin/xcode-select -print-path 2>/dev/null || echo /Developer)/Makefiles
 # environment
-VSCODE_CODE_CACHE_PATH = /Users/rusik/Library/Application Support/Code/CachedData/784b0177c56c607789f9638da7b6bf3230d47a8c
+VSCODE_CODE_CACHE_PATH = /Users/rusik/Library/Application Support/Code/CachedData/6261075646f055b99068d3688932416f2346dd3b
 # environment
 LOGNAME = rusik
 # environment
 APPLICATION_INSIGHTS_NO_DIAGNOSTIC_CHANNEL = 1
 # environment
+CONDA_PROMPT_MODIFIER = (base) 
+# environment
 VSCODE_HANDLES_UNCAUGHT_ERRORS = true
 # automatic
 ^D = $(patsubst %/,%,$(dir $^))
+# environment
+CONDA_DEFAULT_ENV = base
 # environment
 XPC_FLAGS = 0x0
 # default
@@ -97,6 +111,8 @@ USER = rusik
 .DEFAULT_GOAL := default
 # automatic
 %D = $(patsubst %/,%,$(dir $%))
+# environment
+CONDA_SHLVL = 1
 # default
 MAKE_COMMAND := /Library/Developer/CommandLineTools/usr/bin/make
 # default
@@ -106,7 +122,7 @@ TMPDIR = /var/folders/mq/sb26t1d93sg_j5s3xc1m0tbw0000gn/T/
 # automatic
 *F = $(notdir $*)
 # environment
-VSCODE_IPC_HOOK = /Users/rusik/Library/Application Support/Code/1.71.0-main.sock
+VSCODE_IPC_HOOK = /Users/rusik/Library/Application Support/Code/1.73.1-main.sock
 # environment
 MallocNanoZone = 0
 # makefile
@@ -116,7 +132,7 @@ MFLAGS = -Rrqp
 # automatic
 *D = $(patsubst %/,%,$(dir $*))
 # environment
-XPC_SERVICE_NAME = application.com.microsoft.VSCode.26767651.26767657
+XPC_SERVICE_NAME = application.com.microsoft.VSCode.34580096.34580102
 # environment
 HOMEBREW_PREFIX = /opt/homebrew
 # automatic
@@ -136,23 +152,27 @@ MAKEFILES :=
 # environment
 LC_ALL = C
 # environment
-SECURITYSESSIONID = 186b1
+CONDA_PYTHON_EXE = /Users/rusik/opt/anaconda3/bin/python
 # automatic
 ^F = $(notdir $^)
 # default
 SUFFIXES := 
+# environment
+_CE_M = 
 # default
 .INCLUDE_DIRS = /usr/local/include
 # environment
 MAKELEVEL := 0
 # environment
+CONDA_PREFIX = /Users/rusik/opt/anaconda3
+# environment
+VSCODE_PID = 16616
+# environment
+_CE_CONDA = 
+# environment
 LANG = C
-# environment
-DOCKER_HOST = unix:///Users/rusik/.local/share/containers/podman/machine/podman-machine-default/podman.sock
-# environment
-VSCODE_PID = 707
 # variable set hash-table stats:
-# Load=70/1024=7%, Rehash=0, Collisions=2/95=2%
+# Load=79/1024=8%, Rehash=0, Collisions=4/104=4%
 
 # Pattern-specific Variable Values
 
@@ -160,9 +180,9 @@ VSCODE_PID = 707
 
 # Directories
 
-# . (device 16777232, inode 12467985): 18 files, no impossibilities.
+# . (device 16777233, inode 12467985): 19 files, no impossibilities.
 
-# 18 files, no impossibilities in 1 directories.
+# 19 files, no impossibilities in 1 directories.
 
 # Implicit Rules
 
@@ -193,14 +213,14 @@ uninstall:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
-#  commands to execute (from `Makefile', line 69):
+#  commands to execute (from `Makefile', line 72):
 	kubectl delete -f deployments/ || true
 	
 
 # Not a target:
 Makefile:
 #  Implicit rule search has been done.
-#  Last modified 2022-08-24 15:40:04
+#  Last modified 2022-09-17 21:10:36
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -210,7 +230,7 @@ test:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
-#  commands to execute (from `Makefile', line 41):
+#  commands to execute (from `Makefile', line 44):
 	cd pkg/client/client && go test -count=1 -v -bench ./
 	
 
@@ -232,11 +252,19 @@ build:
 	chmod +x bin/*
 	
 
+buildx:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+#  commands to execute (from `Makefile', line 20):
+	docker buildx build --platform="linux/amd64,linux/arm64" -t loqutus/kv2:latest --push .
+	
+
 test_mac_arm64:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
-#  commands to execute (from `Makefile', line 25):
+#  commands to execute (from `Makefile', line 28):
 	./bin/kv2-mac-arm64 &
 	KV2_LISTEN_PORT_CLIENT=6971 KV2_LISTEN_PORT_SERVER=6972 ./bin/kv2-mac-arm64 &
 	sleep 1
@@ -253,7 +281,7 @@ build_mac_arm64:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
-#  commands to execute (from `Makefile', line 20):
+#  commands to execute (from `Makefile', line 23):
 	CGO_ENABLED=0 GOARCH=arm64 GOOS=darwin go build -o bin/${BINARY_NAME}-mac-arm64 cmd/server/main.go
 	CGO_ENABLED=0 GOARCH=arm64 GOOS=darwin go build -o bin/${BINARY_NAME}-client-mac-arm64 cmd/client/main.go
 	chmod +x bin/*
@@ -269,8 +297,9 @@ docker_amd64:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
-#  commands to execute (from `Makefile', line 60):
+#  commands to execute (from `Makefile', line 63):
 	docker build . -f Dockerfile-amd64 -t loqutus/kv2:latest-amd64
+ 
 	docker build . -f Dockerfile-test -t loqutus/kv2-test:latest-amd64
 	docker push loqutus/kv2:latest-amd64
 	docker push loqutus/kv2-test:latest-amd64
@@ -279,9 +308,8 @@ docker_amd64:
 run:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
- 
 #  File has not been updated.
-#  commands to execute (from `Makefile', line 32):
+#  commands to execute (from `Makefile', line 35):
 	./bin/kv2-linux-arm64 &
 	KV2_LISTEN_PORT_CLIENT=6971 KV2_LISTEN_PORT_SERVER=6972 ./bin/kv2-linux-arm64 &
 	KV2_LISTEN_PORT_CLIENT=6973 KV2_LISTEN_PORT_SERVER=6974 ./bin/kv2-linux-arm64 &
@@ -291,7 +319,7 @@ sleep:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
-#  commands to execute (from `Makefile', line 51):
+#  commands to execute (from `Makefile', line 54):
 	sleep 1
 	
 
@@ -299,7 +327,7 @@ logs:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
-#  commands to execute (from `Makefile', line 72):
+#  commands to execute (from `Makefile', line 75):
 	kubectl wait --timeout=120s --for=condition=complete job/kv2-test || true
 	kubectl logs job/kv2-test
 	
@@ -308,7 +336,7 @@ run_mac_arm64:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
-#  commands to execute (from `Makefile', line 37):
+#  commands to execute (from `Makefile', line 40):
 	./bin/kv2-mac-arm64 &
 	KV2_LISTEN_PORT_CLIENT=6971 KV2_LISTEN_PORT_SERVER=6972 ./bin/kv2-mac-arm64 &
 	
@@ -317,7 +345,7 @@ gocritic:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
-#  commands to execute (from `Makefile', line 48):
+#  commands to execute (from `Makefile', line 51):
 	gocritic check ./...
 	
 
@@ -325,7 +353,7 @@ docker_arm64:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
-#  commands to execute (from `Makefile', line 54):
+#  commands to execute (from `Makefile', line 57):
 	docker build . -f Dockerfile-arm64 -t loqutus/kv2:latest-arm64
 	docker build . -f Dockerfile-test -t loqutus/kv2-test:latest-arm64
 	docker push loqutus/kv2:latest-arm64
@@ -336,7 +364,7 @@ get:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
-#  commands to execute (from `Makefile', line 44):
+#  commands to execute (from `Makefile', line 47):
 	go mod tidy
 	go get ./...
 	
@@ -345,12 +373,12 @@ install:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
-#  commands to execute (from `Makefile', line 66):
+#  commands to execute (from `Makefile', line 69):
 	kubectl apply -f deployments/
 	
 
 # files hash-table stats:
-# Load=20/1024=2%, Rehash=0, Collisions=1/38=3%
+# Load=21/1024=2%, Rehash=0, Collisions=1/39=3%
 # VPATH Search Paths
 
 # No `vpath' search paths.
@@ -362,6 +390,6 @@ install:
 # strcache size: total = 4096 / max = 4096 / min = 4096 / avg = 4096
 # strcache free: total = 4087 / max = 4087 / min = 4087 / avg = 4087
 
-# Finished Make data base on Wed Sep  7 20:42:33 2022
+# Finished Make data base on Wed Nov 16 16:58:39 2022
 
  
