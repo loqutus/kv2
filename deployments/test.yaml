@@ -10,6 +10,5 @@ spec:
         image: loqutus/kv2-test:latest-amd64
         imagePullPolicy: Always
       restartPolicy: Never
-      nodeSelector:
-        kubernetes.io/arch: arm64
+      nodeName: pi1
   backoffLimit: 0
