@@ -73,7 +73,7 @@ uninstall:
 	kubectl delete -f deployments/ || true
 
 logs:
-	kubectl wait --timeout=120s --for=condition=complete job/kv2-test || kubectl logs job/kv2-test; exit 1
+	kubectl wait --timeout=300s --for=condition=complete job/kv2-test || kubectl logs job/kv2-test; exit 1
 	kubectl logs job/kv2-test
 
 default: get build run sleep test

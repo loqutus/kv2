@@ -25,4 +25,4 @@ jobs:
       run: make logs
     - name: docker clean
       run: docker system prune -a
-    timeout-minutes: 10
+    timeout-minutes: 30
