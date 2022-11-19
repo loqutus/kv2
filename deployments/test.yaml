@@ -7,7 +7,7 @@ spec:
     spec:
       containers:
       - name: kv2-test
-        image: loqutus/kv2-test:latest-amd64
+        image: loqutus/kv2-test:latest
         imagePullPolicy: Always
       restartPolicy: Never
       nodeName: pi1
