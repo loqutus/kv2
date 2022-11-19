@@ -23,10 +23,10 @@ spec:
           imagePullPolicy: Always
           resources:
             requests:
-              memory: "1024Mi"
-              cpu: "100m"
+              memory: "128Mi"
+              cpu: "128m"
             limits:
-              memory: "8192Mi"
+              memory: "512Mi"
               cpu: "4096m"
           volumeMounts:
             - mountPath: "/tmp/kv2/state"
@@ -36,16 +36,12 @@ spec:
           env:
             - name: KV2_LISTEN_HOST
               value: "0.0.0.0"
-            - name: KV2_PYROSCOPE_SERVER
-              value: "http://pyroscope:4040"
-            - name: KV2_DEBUG
-              value: "true"
             - name: KV2_NODES
               value: "kv2-0:6970,kv2-1:6970,kv2-2:6970"
             - name: KV2_REPLICAS
               value: "3"
             - name: KV2_MEMORY_LIMIT
-              value: "8000"
+              value: "512"
           securityContext:
             capabilities:
               add:
@@ -60,8 +56,6 @@ spec:
               port: 6969
             initialDelaySeconds: 1
             periodSeconds: 1
-      # nodeSelector:
-      #   kubernetes.io/arch: arm64
   volumeClaimTemplates:
     - metadata:
         name: kv2-data
