@@ -18,7 +18,7 @@ build:
 
 buildx:
 	docker buildx build --platform="linux/arm/v7" -t loqutus/kv2:latest --push .
-	docker buildx build --platform="linux/arm/v7" -t loqutus/kv2-test:latest --push -f ./Dockerfile-test
+	docker buildx build --platform="linux/arm/v7" -t loqutus/kv2-test:latest --push -f ./Dockerfile-test .
 
 build_mac_arm64:
 	CGO_ENABLED=0 GOARCH=arm64 GOOS=darwin go build -o bin/${BINARY_NAME}-mac-arm64 cmd/server/main.go
