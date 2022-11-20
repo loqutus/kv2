@@ -121,7 +121,7 @@ func BenchmarkClient(b *testing.B) {
 	elapsed := time.Since(start)
 	fmt.Printf("set: %v\n", elapsed)
 	start = time.Now()
-	for n := 0; n < 100000; n++ {
+	for n := 0; n < 1000; n++ {
 		_, err := c.Get(fmt.Sprint(n))
 		if err != nil {
 			b.Error(err)
